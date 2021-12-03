@@ -20,6 +20,8 @@
                 <input class="form_create" type="number" placeholder="Gênero" name="genero-f" id="genero-f" value="{{filme._genero_id}}"><br><br>
                 <input class="form_create" type="number" placeholder="Estúdio" name="studio-f" id="studio-f" value="{{filme._estudio_id}}"><br><br>
                 <input class="form_sinopse" type="hidden" placeholder="Sinopse" name="sinopse-f" id="sinopse-f" value="{{filme._sinopse}}">
+                <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_filme)}}" alt=""><br><br>
+                <input class="form_create" type="file" name="arquivo" id="arquivo" accept=".jpg"><br><br>
                 
                 <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
                 <button class="btn_confirm" type="submit">Salvar</button> 

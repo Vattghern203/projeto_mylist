@@ -10,7 +10,7 @@
     <main>
         <section>
             <h2>Adicione seu filme</h2>
-            <form method="POST" action="/criar_filme" id="cria-filme">
+            <form method="POST" action="/criar_filme" id="cria-filme" enctype="multipart/form-data">
                 <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
                 <input class="form_create" type="text" placeholder="Nome do Filme" name="nome-f" id="nome-f"><br><br>
                 <input class="form_create" type="text" placeholder="Duração" name="duracao" id="duracao"><br><br>
@@ -29,7 +29,9 @@
                 {% endfor %}        
                 </datalist><br><br>
                 <textarea class="form_sinopse" placeholder="Sinopse" name="sinopse-f" id="sinopse-f" cols="30" rows="5"></textarea><br><br>
-                
+                <img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_padrao.gif')}}" alt="Capa Default"><br><br>
+                <input class="form_create" type="file" accept=".jpg" name="arquivo" id="arquivo" placeholder="Capa do Filme"><br><br>
+
                 <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
                 <button class="btn_confirm" type="submit">Salvar</button> 
             </form>

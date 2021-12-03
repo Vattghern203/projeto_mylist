@@ -1,0 +1,195 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+.logo {
+    box-sizing: unset;
+}
+
+.footer {
+    box-sizing: unset;
+}
+
+.social-media {
+    box-sizing: unset;
+}
+
+.content {
+    display: block;
+    background-color:#222222;
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px 12px;
+    height: auto;
+}
+
+.tittle {
+    background-color: #161616;
+    text-align: left;
+    width: auto;
+    margin-bottom: 10px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.title-serie {
+    text-align: left;
+    padding: 10px 12px;
+}
+
+.cover {
+    display: inline-block;
+    background-color: #161616;
+    width: 200px;
+    height: 283px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin: 8px;
+    overflow: hidden;
+}
+
+.sinopse {
+    text-align: left;
+    display: inline-block;
+    height: 283px;
+    width: 80%;
+    border-radius: 5px;
+    margin: 8px;
+    overflow: hidden;
+    padding: 10px 12px;
+    text-size-adjust: inherit;
+}
+
+.cover {
+    display: inline-block;
+    background-color: #161616;
+    object-position: cover;
+    width: 195px;
+    height: 283px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin: 8px;
+    overflow: hidden;
+}
+
+.cover > img {
+    width: 195px;
+    height: 283px;
+
+}
+
+.content-info {
+    background-color: #161616;
+    text-align: left;
+    margin: auto;
+    border-radius: 5px;
+    display: flex;
+}
+
+.status {
+    margin-left: 15px;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 12px;
+}
+
+.status-content {
+    border-radius: 5px;
+    padding: 5px 6px;
+    display: inline-table;
+    text-align: left;
+    margin: auto;
+}
+
+.status-content-studio {
+    margin: auto;
+    width: 200px;
+    text-align: center;
+}
+
+.info-link {
+    text-decoration: none;
+    padding: 2px 5px;
+}
+
+.info-link:hover {
+    color: whitesmoke;
+}
+
+.info-link:visited {
+    color: #00A2ED;
+}
+
+.info-op {
+    width: 100px;
+}
+
+@media screen and (max-width: 601px){
+    .tittle {
+        text-align: left;
+    }
+
+    .sinopse {
+        text-align: left;
+    }
+}
+
+@media screen and (min-width: 600px){
+    .tittle {
+        text-align: center;
+    }
+
+    .title-serie {
+        text-align: center;
+    }
+
+    .sinopse {
+        text-align: center;
+        height: 200px;
+        overflow: scroll;
+    }
+}
+
+</style>
+
+<main>
+    <div class="content">
+        <div class="tittle">
+            <h2 class="title-serie">{{filme._nome}}</h2>
+        </div>
+        <div class="cover">
+            <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_filme)}}" alt="">
+        </div>
+        <div class="sinopse">
+            <section>
+                <p>{{filme._sinopse}}</p>
+            </section>
+        </div>
+        <div class="content-info">
+            <div class="status">
+                <h4 class="status-content">Nota: {{filme._nota}}</h4>
+                <h4 class="status-content">Duração: {{filme._duracao}}</h4>
+                <h4 class="status-content">Ano: {{filme._ano}}</h4>
+                <h4 class="status-content">Gênero: {{filme._genero_id}}</h4>
+                <h4 class="status-content">Rank: #666</h4>
+                <h4 class="status-content">Estúdio: {{filme._estudio_id}} Kyoto Animation Super 2</h4>
+            </div>
+        </div>
+    </div>
+
+    <a class="info-link" href="{{ url_for('editar_filme', id=filme._id)}}">editar</a>
+    <a href="#">adicionar a minha lista</a>
+    <select name="status" id="status">
+        <label>Add to list &plus;</label>
+        <option class="info-op" value="Planeja Assitir">Planeja Assistir</option>
+        <option class="info-op" value="Assistindo">Assistindo</option>
+        <option class="info-op" value="Completo">Completo</option>
+    </select>
+</main>
+
+{% endblock %}

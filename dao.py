@@ -126,7 +126,7 @@ class FilmeDao:
         cursor = self.__db.connection.cursor()
         cursor.execute(SQL_FILME_POR_ID, (id,))
         tupla = cursor.fetchone()
-        return Serie(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], tupla[8], id=tupla[0])
+        return Filme(tupla[1], tupla[2], tupla[3], tupla[4], tupla[5], tupla[6], tupla[7], id=tupla[0])
 
     def deletar_filme(self, id):
         self.__db.connection.cursor().execute(SQL_DELETA_FILME, (id,))

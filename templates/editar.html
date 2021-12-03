@@ -20,7 +20,7 @@
                 <input class="form_create" type="number" placeholder="Estúdio" name="studio" id="studio" value="{{serie._estudio_id}}"><br><br>
                 <input class="form_sinopse" placeholder="Sinopse" name="sinopse" id="sinopse" type="hidden" value="{{serie._sinopse}}">
 
-                <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_serie)}}"><br><br>
+                <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_serie)}}" alt=""><br><br>
                 <input class="form_create" type="file" name="arquivo" id="arquivo" accept=".jpg"><br><br>
                 
                 <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>

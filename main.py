@@ -131,6 +131,12 @@ def criar_filme():
     generof = request.form['genero-f']
 
     filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof)
+    
+    filme = filme_dao.salvar_filme(filme)
+    
+    arquivo = request.files['arquivo']
+    upload_path = app.config['UPLOAD_PATH']
+    arquivo.save(f'{upload_path}/capa_filme{filme._id}.jpg')
 
     filme_dao.salvar_filme(filme)
     return redirect('/novo_filme')
@@ -208,7 +214,7 @@ def editar(id):
 @app.route('/editar_filme/<int:id>')
 def editar_filme(id):
     filme = filme_dao.busca_filme_por_id(id)
-    return render_template('editar_filme.html', filme=filme)
+    return render_template('editar_filme.html', filme=filme, capa_filme=f'capa_filme{id}.jpg')
 
 
 # Info
@@ -241,11 +247,17 @@ def teste():
     return render_template('testeteste.html')
 
 
-# Serie Info
+# Info
 @app.route('/serie_info/<int:id>')
 def serie_info(id):
     serie = serie_dao.busca_por_id(id)
     return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{id}.jpg')
+
+
+@app.route('/filme_info/<int:id>')
+def filme_info(id):
+    filme = filme_dao.busca_filme_por_id(id)
+    return render_template('filme_info.html', filme=filme, capa_filme=f'capa_filme{id}.jpg')
 
 
 # Tabelas/listas

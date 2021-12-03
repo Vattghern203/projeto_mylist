@@ -20,7 +20,7 @@
         <tbody>
         {% for filme in filmes %}
             <tr>
-                <td>{{filme._nome}}</td>
+                <td><a href="{{ url_for('filme_info', id=filme._id)}}">{{filme._nome}}</a></td>
                 <td>{{filme._duracao}}</td>
                 <td>{{filme._nota}}</td>
                 <td>{{filme._estudio_id}}</td>
