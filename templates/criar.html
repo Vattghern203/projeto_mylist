@@ -31,7 +31,7 @@
                 </datalist><br><br>
                 <textarea class="form_sinopse" placeholder="Sinopse" name="sinopse" id="sinopse" cols="30" rows="5"></textarea><br><br>
                 <label>Cover<br><br></label>
-                <img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_padrao.gif')}}"><br><br>
+                <img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_padrao.gif')}}" alt="Capa Default"><br><br>
                 <input class="form_create" type="file" accept=".jpg" name="arquivo" id="arquivo" placeholder="Capa da Série"><br><br>
 
                 <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
