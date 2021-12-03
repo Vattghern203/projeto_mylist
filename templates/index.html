@@ -60,10 +60,7 @@
     <main>
         <section id="minha-lista" class="index-section">
             <article>
-                <h2 class="section-title">minha lista</h2>
-                {% for serie in series %}
-                <a href="{{ url_for('serie_info', id=serie._id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}" alt="{{serie._nome}}"></a>
-                {% endfor %}
+                
             </article>
 
         </section>
@@ -83,12 +80,10 @@
         <section id="series" class="index-section">
             <article>
                 <h2 class="section-title">séries</h2>
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx133965-1jyaEkgXQW8a.jpg" alt="Komi-san">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx131565-3W2YEX6V3K3i.jpg" alt="takt.op">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127720-ADJgIrUVMdU9.jpg" alt="Mushoku Tensei Second Part">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-m5ZMNtFioc7j.png" alt="SNK 01">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx431-dDgk19xDZjVX.jpg" alt="Howl's Castle"></a>
-                <a href="{{url_for('serie_perfil')}}"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140960-lcrRA8XVch3y.png" alt="Spy vs Family"></a>
+                <h2 class="section-title">minha lista</h2>
+                {% for serie in series %}
+                <a href="{{ url_for('serie_info', id=serie._id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}" alt="{{serie._nome}}"></a>
+                {% endfor %}
             </article>
         </section>
     </main>
