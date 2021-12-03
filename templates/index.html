@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} My List {% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+{% block main %}
+
+    {% block header %}
+<body>
+    <header>
+        <a href="{{url_for('index')}}"><img class="logo" src="{{url_for('static', filename='logo.png')}}" alt="logo"></a>
+        <nav class="top_nav">
+            <div class="dropdown">
+                <button class="dropbtn">
+                    criar
+                </button>
+                <div class="dropdown-content">
+                    <a href="{{url_for('novo')}}">séries</a>
+                    <a href="{{url_for('novo_filme')}}">filmes</a>
+                    <a href="{{url_for('novo_genero')}}">gêneros</a>
+                    <a href="{{url_for('novo_estudio')}}">estúdios</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    lista
+                </button>
+                <div class="dropdown-content">
+                    <a href="{{url_for('tabela')}}">séries</a>
+                    <a href="{{url_for('tabela_filmes')}}">filmes</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    rank
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">séries</a>
+                    <a href="#">filmes</a>
+                    <a href="{{url_for('teste')}}">teste</a>
+                    <a href="{{url_for('extendido')}}">link</a>
+                    <a href="#">tabela</a>
+                </div>
+            </div>
+            <input class="search-bar" type="text" placeholder="search...">
+            <a id="login_button" href="{{url_for('login')}}">login</a>
+        </nav>
+    </header>
+    {% endblock %}
+
+    {% block content %}
+    <main>
+        <section id="minha-lista" class="index-section">
+            <article>
+                <h2 class="section-title">minha lista</h2>
+                {% for serie in series %}
+                <a href="{{ url_for('serie_info', id=serie._id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}" alt="{{serie._nome}}"></a>
+                {% endfor %}
+            </article>
+
+        </section>
+
+        <section id="filmes" class="index-section">
+            <article>
+                <h2 class="section-title">filmes</h2>
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx99750-zadlgc0NMR46.jpg" alt="Pancreas">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104459-pywEKGQON613.jpg" alt="Yuru Camp Season 2">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx164-QYmGmG2k09pL.jpg" alt="Mononoke Hime">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104157-rk99XI56PaIC.jpg" alt="Bunny Girl Movie">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx97986-fzJBML9qecb4.jpg" alt="Made in Abyss">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx108489-UqIzSjJ4eOMD.png" alt="Oregairu Season 3">
+            </article>
+        </section>
+
+        <section id="series" class="index-section">
+            <article>
+                <h2 class="section-title">séries</h2>
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx133965-1jyaEkgXQW8a.jpg" alt="Komi-san">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx131565-3W2YEX6V3K3i.jpg" alt="takt.op">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx127720-ADJgIrUVMdU9.jpg" alt="Mushoku Tensei Second Part">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx16498-m5ZMNtFioc7j.png" alt="SNK 01">
+                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx431-dDgk19xDZjVX.jpg" alt="Howl's Castle"></a>
+                <a href="{{url_for('serie_perfil')}}"><img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx140960-lcrRA8XVch3y.png" alt="Spy vs Family"></a>
+            </article>
+        </section>
+    </main>
+    {% endblock %}
+
+    {% block footer %}
+    <footer>
+        <p class="creditos">developed by <a href="https://twitter.com/Vattguern">Otávio Augusto</a></p>
+        <a href="https://discord.com/users/389762685992042496" target="
+        _blank"><img class="social-media" src="{{url_for('static', filename='discord_logo.png')}}"   alt="Discord Link"></a>
+        <a href="https://steamcommunity.com/id/Vatt_Ghern/" target="_blank"><img class="social-media" src="{{url_for('static', filename='steam_logo.png')}}" alt="Steam Link"></a>
+        <a href="https://twitter.com/Vattguern" target="_blank"><img class="social-media" src="{{url_for('static', filename='twitter_logo.png')}}" alt="Twitter Link"></a>
+        <abbr title="(35)998163510"><img class="social-media" src="{{url_for('static', filename='whatsapp_logo.png')}}" alt="What'sApp Link"></abbr>
+    </footer>
+    {% endblock %}
+
+     <script type="text/Javascript" src="{{url_for('static', filename='japp.js')}}"></script>
+</body>
+</html>
+
+{% endblock %}

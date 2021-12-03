@@ -1,0 +1,126 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    line-height: 1.15;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.9rem;
+    font-weight: 400;
+    display: block;
+    
+  }
+
+  .container {
+    display: grid;
+    background-color: blueviolet;
+    display: grid;
+    column-gap: 30px;
+    grid-template-columns: 215px auto;
+    margin: auto;
+    padding: 20px;
+    width: 100%;
+    height: 271.6;
+  }
+
+  .actions {
+    display: grid;
+  }
+
+  .list {
+    display: flex;
+  }
+
+  .add {
+    display: flex;
+  }
+
+  .cover-wrap {
+    background-color: aqua;
+    width: 215px;
+    height: 312.68px;
+  }
+
+  .cover {
+    background-size: cover;
+    width: 215px;
+    height: 312.68px;
+  }
+
+  .content {
+    background-color: beige;
+    display: inline-grid;
+    column-gap: 40px;
+    grid-template-columns: 208px auto;
+    margin-top: 30px;
+    position: relative;
+    
+  }
+
+  .content-container {
+    background-color: chartreuse;
+    display: grid;
+
+  }
+
+
+  .description {
+    display: inline-block;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 900px;
+    max-height: 400px;
+    overflow: hidden;
+    padding: 15px 0;
+    transition: .2s;
+  }
+
+  .description-container {
+    display: contents;
+  }
+</style>
+
+<div class="container">
+  <div class="cover-wrap">
+    <div class="cover-inner">
+      <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx133965-1jyaEkgXQW8a.jpg" alt="" class="cover">
+      <div class="actions">
+        <div class="list">
+          <div class="add"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="description-container">
+      <p class="Description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam recusandae, quasi, fuga omnis corrupti delectus quaerat laudantium itaque voluptate similique expedita doloremque voluptatibus eius maxime non praesentium suscipit hic illum. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic quibusdam repudiandae tenetur officia, facere labore sequi, sint accusamus, perspiciatis magnam nisi suscipit incidunt recusandae consequatur voluptates? Nulla porro aspernatur, quisquam cumque maxime impedit nam similique fugiat minus cum iusto neque placeat corrupti inventore nesciunt distinctio eligendi eos? Quia eligendi id corrupti consectetur quas repellendus, modi aspernatur? Ratione officiis velit consequatur. Inventore nesciunt veritatis aspernatur officia omnis possimus, illo quae non? Aperiam, fugit. Illo repellendus voluptas perferendis minus corporis ipsum modi tempore quidem tenetur enim. Quas fuga consectetur cumque ea ipsum? Aperiam atque iste maxime adipisci, fuga blanditiis nulla ipsam earum.</p>
+    </div>
+  </div>
+</div>
+
+<div class="content-container">
+  <div class="sidebar"></div>
+  <div class="overview"></div>
+</div>
+
+{% endblock %}

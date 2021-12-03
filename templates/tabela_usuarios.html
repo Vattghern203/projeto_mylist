@@ -1,0 +1,125 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<style>
+    table {
+
+        margin: auto;
+        border-radius: 5px;
+
+        padding: 10px 12px;
+    }
+
+    thead {
+        width: 600px;
+        height: 50px;
+        border-radius: 5px;
+        background-color: #222222;
+    }
+
+    tbody {
+        width: 600px;
+        height: 600px;
+        border-radius: 5px;
+        background-color: #3a3a3a;
+    }
+
+    tr {
+        border-radius: 5px;
+    }
+
+    th {
+        padding: 10px 12px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    td {
+        margin: 0;
+        padding: 10px 12px;
+        text-align: center;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+
+    .btn_edit {
+    background-color: #00A2ED;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    }
+
+    .btn_edit:hover {
+    background-color: #0283be;
+    }
+
+    .btn_edit:active {
+        color: whitesmoke;
+    }
+
+    .btn_edit:visited {
+        color: white;
+    }
+
+    .btn_delete {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    }
+
+    .btn_delete:hover {
+        background-color: rgb(190, 2, 2);
+    }
+
+    .btn_delete:active {
+        color: whitesmoke;
+    }
+
+    .btn_delete:visited {
+        color: white;
+    }
+
+</style>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Senha</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>{{usuario._nome}}</td>
+                    <td>{{usuario._email}}</td>
+                    <td>{{usuario._senha}}</td>
+                    <td><a class="btn_edit" href="{{ url_for('editar', id=usuario._id)}}">Editar</a></td>
+                    <td><a class="btn_delete" href="{{ url_for('deletar', id=usuario._id)}}">Deletar</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

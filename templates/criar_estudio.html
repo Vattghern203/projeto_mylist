@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+
+<style>
+    main {
+        height: 500px;
+    }
+</style>
+
+<br><br>
+<main>
+    <section>
+        <br><br>
+        <h1>Adicione um estúdio</h1>
+        <form method="POST" action="/criar_estudio">
+            <br><br>
+            <input class="form_create" type="text" placeholder="Nome do estúdio" name="nome-e" id="nome-e"><br><br>
+            <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
+            <button class="btn_confirm" type="submit">Salvar</button> 
+            <br><br>
+        </form>
+        <br><br>
+    </section>
+</main>
+<br><br>
+
+{% endblock %}

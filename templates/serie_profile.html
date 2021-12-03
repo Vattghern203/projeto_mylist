@@ -1,0 +1,100 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<style>
+    .bg-cover {
+        background-color: yellow;
+        margin: 10px;
+        height: 520px;
+    }
+
+    .info-name {
+        position: absolute;
+        top: 6rem;
+        left: 5rem;
+        width: 1050px;
+        height: 10px;
+        text-align: left;
+    }
+
+    .cover {
+        position: absolute;
+        width: 215px;
+        height: 312.68px;
+        overflow: hidden;
+        left: 5rem;
+        top: 11rem;
+    }
+
+    .cover > img {
+        border-radius: 5px;
+        width: 215px;
+        height: 312.68px;
+        background-size: cover;
+    }
+
+    .info {
+        background-color: blue;
+        border-radius: 5px;
+        padding: 7px;
+        position: absolute;
+        right: 5rem;
+        top: 11rem;
+        height: 338px;
+        width: 850px;
+    }
+     
+    .user-stats {
+        background-color: aqua;
+        position: absolute;
+        left: 5rem;
+        top: 31.3rem;
+        width: 160px;
+        height: 26px;
+        border-radius: 3px;
+    }
+
+    .user-fav {
+        border-radius: 3px;
+        background-color: blueviolet;
+        position: absolute;
+        left: 16.8rem;
+        top: 31.3rem;
+        width: 26px;
+        height: 26px;
+    }
+
+    .info-stats {
+        border-radius: 3px;
+        background-color: deeppink;
+        position: absolute;
+        right: 5rem;
+        top: 31.3rem;
+        width: 850px;
+    }
+</style>
+
+
+<main>
+    <div class="bg-cover">
+        <div class="info-name">
+            <h1>Horimiya</h1>
+        </div>
+        <div class="cover">
+            <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx124080-h8EPH92nyRfS.jpg" alt="">
+        </div>
+        <div class="stats">
+            <div class="user-stats"></div>
+            <div class="user-fav"></div>
+            <div class="user-progress"></div>
+            <div class="info-stats"></div>
+        </div>
+        <div class="info">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi, sit. Molestias, hic? Ut laborum molestias fuga sapiente fugiat modi iusto temporibus eligendi excepturi reprehenderit nulla voluptatum velit rem minus, consequatur dignissimos esse deleniti dolor dolore veritatis non dolorem. Accusamus autem eius corrupti aliquid a non quibusdam animi et, assumenda praesentium quam nisi dolore iure quisquam reprehenderit magni rerum, eveniet tempora totam neque! Nobis provident hic eveniet exercitationem aperiam magni in, labore quasi, optio dicta a architecto fugit suscipit totam! Eligendi odio et numquam eveniet autem error, suscipit, debitis impedit animi eos molestias ea hic distinctio facilis, in voluptatem dicta culpa.</p>
+        </div>
+    </div>
+    
+</main>
+
+{% endblock %}

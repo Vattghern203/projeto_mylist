@@ -1,0 +1,169 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .logo {
+        box-sizing: unset;
+    }
+
+    .footer {
+        box-sizing: unset;
+    }
+
+    .social-media {
+        box-sizing: unset;
+    }
+
+    .content {
+        display: block;
+        background-color:#222222;
+        margin: auto;
+        border-radius: 10px;
+        padding: 10px 12px;
+        height: auto;
+    }
+
+    .tittle {
+        background-color: #161616;
+        text-align: left;
+        width: auto;
+        margin-bottom: 10px;
+        height: 50px;
+        border-radius: 5px;
+    }
+
+    .title-serie {
+        text-align: left;
+        padding: 10px 12px;
+    }
+
+    .cover {
+        display: inline-block;
+        background-color: #161616;
+        width: 200px;
+        height: 283px;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin: 8px;
+        overflow: hidden;
+    }
+
+    .sinopse {
+        text-align: left;
+        display: inline-block;
+        height: 283px;
+        width: 80%;
+        border-radius: 5px;
+        margin: 8px;
+        overflow: hidden;
+        padding: 10px 12px;
+        text-size-adjust: inherit;
+    }
+
+    .cover {
+        display: inline-block;
+        background-color: #161616;
+        object-position: cover;
+        width: 195px;
+        height: 283px;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin: 8px;
+        overflow: hidden;
+    }
+
+    .cover > img {
+        width: 195px;
+        height: 283px;
+
+    }
+
+    .content-info {
+        background-color: #161616;
+        text-align: left;
+        margin: auto;
+        border-radius: 5px;
+        display: flex;
+    }
+
+    .status {
+        margin-left: 15px;
+        text-align: center;
+        display: inline-block;
+        padding: 10px 12px;
+    }
+
+    .status-content {
+        border-radius: 5px;
+        padding: 5px 6px;
+        display: inline-table;
+        text-align: left;
+        margin: auto;
+    }
+
+    .status-content-studio {
+        margin: auto;
+        width: 200px;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 601px){
+        .tittle {
+            text-align: left;
+        }
+
+        .sinopse {
+            text-align: left;
+        }
+    }
+
+    @media screen and (min-width: 600px){
+        .tittle {
+            text-align: center;
+        }
+
+        .title-serie {
+            text-align: center;
+        }
+
+        .sinopse {
+            text-align: center;
+            height: 200px;
+            overflow: scroll;
+        }
+    }
+
+</style>
+
+<main>
+    <div class="content">
+        <div class="tittle">
+            <h2 class="title-serie">{{serie._nome}}</h2>
+        </div>
+        <div class="cover">
+            <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_serie)}}">
+        </div>
+        <div class="sinopse">
+            <section>
+                <p>{{serie._sinopse}}</p>
+            </section>
+        </div>
+        <div class="content-info">
+            <div class="status">
+                <h4 class="status-content">Nota: {{serie._nota}}</h4>
+                <h4 class="status-content">Episódios: {{serie._eps}}</h4>
+                <h4 class="status-content">Temporadas: {{serie._temps}}</h4>
+                <h4 class="status-content">Gênero: {{serie._genero_id}}</h4>
+                <h4 class="status-content">Rank: #666</h4>
+                <h4 class="status-content">Estúdio: {{serie._estudio_id}} Kyoto Animation Super 2</h4>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

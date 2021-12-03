@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
+
+    <table id="works">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Duração</th>
+                <th>Nota</th>
+                <th>Estúdio</th>
+                <th>Gênero</th>
+                <th>Ano</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for filme in filmes %}
+            <tr>
+                <td>{{filme._nome}}</td>
+                <td>{{filme._duracao}}</td>
+                <td>{{filme._nota}}</td>
+                <td>{{filme._estudio_id}}</td>
+                <td>{{filme._genero_id}}</td>
+                <td>{{filme._ano}}</td>
+                <td class="form-btn"><a class="btn_edit" href="{{ url_for('editar_filme', id=filme._id)}}">Editar</a></td>
+                <td class="form-btn"><a class="btn_delete" href="{{ url_for('deletar_filme', id=filme._id)}}">Deletar</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

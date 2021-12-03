@@ -1,0 +1,94 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+    <style>
+    main {
+        padding: 15px;
+        width: 500px;
+        height: 500px;
+        margin: auto;
+    }
+
+    a {
+        cursor: pointer;
+    }
+
+    form {
+        margin-top: 100px;
+    }
+
+    .form_login {
+    margin: auto;
+    border-radius: 5px;
+    padding: 10px;
+    width: 400px;
+    }
+
+    input {
+        border: none;
+        outline: none;
+    }
+
+    .btn_cancel {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    }
+
+    .btn_cancel:hover {
+        background-color: rgb(190, 2, 2);
+    }
+
+    .btn_confirm {
+    background-color: #00A2ED;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    }
+
+    .btn_confirm:hover {
+    background-color: #0283be;
+    }
+    
+    </style>
+
+    <br>
+    <br>
+
+    <main>
+        <section>
+            <h2>Crie sua conta</h2>
+            <form method="POST" action="/criar_conta">
+                <input class="form_login" type="text" name="nome_usuario" id="nome_usuario" placeholder="Nome de Usuário"><br><br>
+                <input class="form_login" type="text" name="email" id="email" placeholder="Email"><br><br>
+                <input class="form_login" type="password" name="senha" id="senha" placeholder="Senha"><br><br>
+
+                <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
+                <button class="btn_confirm" type="submit">Confirmar</button> 
+            </form>
+        </section>
+    </main>
+
+    <br>
+    <br>
+    
+{% endblock %}

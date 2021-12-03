@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+
+<style>
+    main {
+        height: 500px;
+    }
+</style>
+
+<br><br>
+<main>
+    <section>
+        <h1>Adicione um gênero</h1>
+        <form method="POST" action="/criar_genero">
+            <br><br>
+            <input class="form_create" type="text" placeholder="Gênero" name="nome" id="nome"><br><br>
+            <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
+            <button class="btn_confirm" type="submit">Salvar</button>
+            <br><br>
+        </form>
+    </section>
+</main>
+<br><br>
+
+{% endblock %}

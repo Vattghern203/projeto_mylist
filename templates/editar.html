@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+    
+    <br>
+    <br>
+    <main>
+        <section>
+            <h2>Edite sua série</h2>
+            <form method="POST" action="/atualizar" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="id" value="{{serie._id}}"><br><br>
+                <input class="form_create" type="text" placeholder="Nome da Série" name="nome" id="nome" value="{{serie._nome}}"><br><br>
+                <input class="form_create" type="number" placeholder="Episódios" name="eps" id="eps" value="{{serie._eps}}"><br><br>
+                <input class="form_create" type="number" placeholder="Temporadas" name="temps" id="temps" value="{{serie._temps}}"><br><br>
+                <input class="form_create" type="text" placeholder="Nota" name="nota" id="nota" value="{{serie._nota}}"><br><br>
+                <input class="form_create" type="number" placeholder="Ano" name="ano" id="ano" value="{{serie._ano}}"><br><br>
+                <input class="form_create" type="number" placeholder="Gênero" name="genero" id="genero" value="{{serie._genero_id}}"><br><br>
+                <input class="form_create" type="number" placeholder="Estúdio" name="studio" id="studio" value="{{serie._estudio_id}}"><br><br>
+                <input class="form_sinopse" placeholder="Sinopse" name="sinopse" id="sinopse" type="hidden" value="{{serie._sinopse}}">
+
+                <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_serie)}}"><br><br>
+                <input class="form_create" type="file" name="arquivo" id="arquivo" accept=".jpg"><br><br>
+                
+                <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
+                <button class="btn_confirm" type="submit">Salvar</button> 
+            </form>
+        </section>
+    </main>
+
+    <br>
+    <br>
+
+{% endblock %}

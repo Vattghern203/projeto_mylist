@@ -1,0 +1,77 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+<style>
+    .cover-img {
+        padding: 20px;
+        
+    }
+
+    img {
+        border-radius: 5px;
+        display: inline-block;
+    }
+</style>
+div id="editdiv" class="fw-n fs11">
+<form method="GET" action="https://myanimelist.net/dbchanges.php" class="di-i">
+  <input type="hidden" name="mid" value="119161">
+  <div class="pb8">What would you like to edit?</div>
+      <select name="t" id="t" class="inputtext"><option value="synopsis">Synopsis</option><option value="background">Background</option><option value="alternative_titles">Alternative Titles</option><option value="pic">Picture</option><option value="chapvol">Chapters/Volumes</option><option value="pubdates">Publishing Dates</option><option value="relations">Relations</option><option value="type">Type</option></select>
+   &nbsp;<input type="submit" value="Go" class="inputButton flat btn-middle">
+</form>
+</div>
+</div></h1></div><div id="content" >
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td class="borderClass" width="225" style="border-width: 0 1px 0 0;" valign="top"><div style="width: 225px"><div style="text-align: center;"><a href="https://myanimelist.net/manga/119161/Spy_x_Family/pics"><img class="lazyload" data-src="https://cdn.myanimelist.net/images/manga/3/219741.jpg" alt="Spy x Family" itemprop="image" class="ac"></a></div><h2 class="mt8">Edit Status</h2>
+  <div id="addtolist" class="addtolist-block js-manga-addtolist-block" style="display:block;">
+      <input type="hidden" id="myinfo_manga_id" value="119161"><table border="0" cellpadding="0" cellspacing="0" width="100%"><span class="notice_open_public pb4">* Your list is public by default.</span>
+      <tr>
+      <td class="spaceit">Status:</td>
+      <td class="spaceit"><select id="myinfo_status" name="myinfo_status" class="inputtext js-manga-status-dropdown"><option value="1" selected>Reading</option><option value="2" >Completed</option><option value="3" >On-Hold</option><option value="4" >Dropped</option><option value="6" >Plan to Read</option></select></td>
+      </tr>
+      <tr>
+      <td class="spaceit">Chap. Read:</td>
+      <td class="spaceit"><input type="text" id="myinfo_chapters" size="3" maxlength="4" class="inputtext" value="47"> / <span id="totalChaps">?</span></td>
+      </tr>
+      <tr>
+      <td class="spaceit">Vol. Read:</td>
+      <td class="spaceit"><input type="text" id="myinfo_volumes" size="3" maxlength="4" class="inputtext" value="6"> / <span id="totalVols">?</span></td>
+      </tr>
+      <tr>
+      <td class="spaceit">Your Score:</td>
+      <td class="spaceit"><select id="myinfo_score" name="myinfo_score" class="inputtext"><option value="0">Select</option><option value="10" selected>(10) Masterpiece</option><option value="9" >(9) Great</option><option value="8" >(8) Very Good</option><option value="7" >(7) Good</option><option value="6" >(6) Fine</option><option value="5" >(5) Average</option><option value="4" >(4) Bad</option><option value="3" >(3) Very Bad</option><option value="2" >(2) Horrible</option><option value="1" >(1) Appalling</option></select></td>
+      </tr>
+      
+      <tr>
+        <td>&nbsp;</td>
+        <td><input type="button" name="myinfo_submit" value="Submit" class="inputButton js-manga-update-button"> <small><a href="/ownlist/manga/119161/edit">Edit Details</a></small></td>
+      </tr>
+      </table>
+  <div id="myinfoDisplay" style="padding-left: 82px; margin-top: 3px;"></div>
+      </div>
+      <div id="profileRows" class="pt0"><div id="v-favorite" data-favorite="{&quot;isFavorite&quot;:true,&quot;type&quot;:&quot;manga&quot;,&quot;id&quot;:119161}">
+<a href="#" class="js-favorite-button" style="font-weight:normal;" @click.prevent="toggleFavorite()" :disabled="sending">
+  <span id="favOutput">
+    <template v-if="isFavorite">Remove from Favorites</template>
+    <template v-if="!isFavorite">Add to Favorites</template>
+    <template v-if="sending">
+      <i id="loading-spinner" class="fa fa-spinner fa-spin"></i>
+    </template>
+  </span>
+</a>
+<template v-if="msg">
+  <div class="borderClass" :class="isError? 'fn-red1': 'fn-grey5'" v-html="msg"></div>
+</template>
+</div>
+</div><div class="js-sns-icon-container icon-block "><a data-ga-network="facebook" data-ga-screen="Share Button Location: common" class="js-share-button-popup js-share-button-tracking sprite-icon-social icon-social icon-facebook" target="_blank" href="http://www.facebook.com/share.php?u=https%3A%2F%2Fmyanimelist.net%2Fmanga%2F119161%2FSpy_x_Family"></a><a data-ga-network="twitter" data-ga-screen="Share Button Location: common" class="js-share-button-popup js-share-button-tracking sprite-icon-social icon-social icon-twitter" target="_blank" href="http://twitter.com/share?related=MyAnimeList.net&amp;via=myanimelist&amp;url=https%3A%2F%2Fmyanimelist.net%2Fmanga%2F119161%2FSpy_x_Family&amp;text=Spy%20x%20Family&amp;hashtags=manga"></a><a data-ga-network="reddit" data-ga-screen="Share Button Location: common" class="js-share-button-popup js-share-button-tracking sprite-icon-social icon-social icon-reddit" target="_blank" href="http://reddit.com/submit?url=https%3A%2F%2Fmyanimelist.net%2Fmanga%2F119161%2FSpy_x_Family&amp;title=Spy%20x%20Family"></a><a data-ga-network="tumblr" data-ga-screen="Share Button Location: common" class="js-share-button-popup js-share-button-tracking sprite-icon-social icon-social icon-tumblr" target="_blank" href="http://www.tumblr.com/share/link?url=https%3A%2F%2Fmyanimelist.net%2Fmanga%2F119161%2FSpy_x_Family&amp;name=Spy%20x%20Family"></a></div><br><h2>Alternative Titles</h2><div class="spaceit_pad"><span class="dark_text">English:</span> Spy x Family</div><div class="spaceit_pad"><span class="dark_text">Japanese:</span> SPY×FAMILY</div><br><h2>Information</h2><div class="spaceit_pad"><span class="dark_text">Type:</span> <a href="/topmanga.php?type=manga">Manga</a></div>
+<div class="spaceit_pad"><span class="dark_text">Volumes:</span> Unknown
+</div>
+<div class="spaceit_pad"><span class="dark_text">Chapters:</span> Unknown
+</div>
+<div class="spaceit_pad"><span class="dark_text">Status:</span> Publishing</div>
+<div class="spaceit_pad"><span class="dark_text">Published:</span> Mar  25, 2019 to ?</div>
+  
+{% endblock %}
+    

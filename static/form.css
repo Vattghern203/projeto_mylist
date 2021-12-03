@@ -1,0 +1,121 @@
+main {
+    padding: 15px;
+    width: 500px;
+    height: auto;
+    margin: auto;
+    border-radius: 5px;
+}
+
+a {
+    cursor: pointer;
+}
+
+form {
+    margin-top: 100px;
+}
+
+.form_create {
+    color: whitesmoke;
+    font-display: inherit;
+    background-color: #2A2A2A;
+    margin: auto;
+    border-radius: 5px;
+    padding: 10px;
+    width: 400px;
+}
+
+.form_create:active {
+    color: whitesmoke;
+}
+
+.form_label {
+    margin: auto;
+}
+
+.form_options {
+    padding: 10px;
+    margin: auto;
+    border-radius: 5px;
+    width: 400px;
+    text-decoration: none;
+    background-color: #222222;
+    color: whitesmoke;
+}
+
+.form_select {
+    width: 410px;
+    height: 40px;
+    border-radius: 5px;
+    text-decoration: none;
+    outline: #222222;
+}
+
+.form_select:active {
+    text-decoration: none;
+    border-color: #222222
+}
+
+.form_sinopse {
+    color: whitesmoke;
+    font-display: inherit;
+    background-color: #2A2A2A;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    margin: auto;
+    border-radius: 5px;
+    padding: 10px;
+    width: 400px;
+    height: 50px;
+    size-adjust: none;
+    font-family: 'Source Sans Regular', sans-serif;
+}
+
+.form.btn {
+    text-align: center;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+.btn_cancel {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.btn_cancel:hover {
+    background-color: rgb(190, 2, 2);
+}
+
+.btn_confirm {
+    background-color: #00A2ED;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.btn_confirm:hover {
+    background-color: #0283be;
+}

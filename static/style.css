@@ -1,0 +1,271 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+/* Cores Paleta
+Azul Logitech: #00A2ED;
+Cinza Background: #2A2A2A;
+Dark Grey BG: #222222
+Darker Grey: #161616
+Fonte: White Smoke;
+*/
+
+body {
+    background-color: #2A2A2A;
+    margin: 0;
+    font-family: 'Source Sans Regular', sans-serif;
+    color: whitesmoke;
+}
+
+header {
+    background-color: #222222;
+    margin: 0;
+    text-align: left;
+    
+}
+
+.logo {
+    width: 127px;
+    height: 41px;
+    padding: 10px 12px;
+}
+
+header > h1 {
+    text-align: center;
+}
+
+nav {
+    text-align: right;
+    overflow: hidden;
+    display: block;
+    padding: 5px;
+    margin: 0;
+}
+
+.search-bar {
+    background-color: #222222;
+    border-radius: 3px;
+    margin-right: 10px;
+    overflow: hidden;
+    height: 28px;
+    margin: auto;
+    margin-top: 8px;
+}
+
+#login_button {
+    float: right;
+}
+
+#login_button:visited {
+    color: #00A2ED;
+}
+
+#login_button:hover {
+    color: whitesmoke;
+}
+
+.top_nav {
+    margin: 0;
+    overflow: hidden;
+    background-color: #161616;
+    margin-bottom: 5px;
+}
+
+.top_nav > a {
+    width: 50px;
+    float: left;
+    text-align: center;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border: none;
+    outline: none;
+    color: #00A2ED;
+    background-color: inherit;
+    margin: 0;
+}
+
+.dropdown .dropbtn:visited {
+    color: #00A2ED;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    color: whitesmoke;
+    background-color: #222222;
+}
+
+.dropdown-content {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: none;
+    position: absolute;
+    background-color: #222222;
+    min-width: 95px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    color: whitesmoke;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content > a{
+    color: #00A2ED;
+}
+
+.dropdown-content:visited {
+    color: #00A2ED;
+}
+
+.topnav input[type=text] {
+    float: right;
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 16px;
+    border: none;
+    font-size: 17px;
+}
+
+@media screen and (max-width: 600px) {
+    .topnav a, .topnav input[type=text] {
+      float: none;
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      padding: 14px;
+    }
+
+    .topnav input[type=text] {
+      border: 1px solid #ccc;
+    }
+}
+
+.top_nav > a {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+nav > a:hover {
+    color: whitesmoke;
+}
+
+main {
+    background-color: #222222;
+    text-align: center;
+    padding: 10px 12px;
+    margin: 0px;
+}
+
+body {
+    margin: 0;
+}
+
+.index-section {
+    margin: 0;
+}
+
+article > img {
+    display: inline-block;
+    width: 200px;
+    height: 283px;
+    border-radius: 3px;
+}
+
+article > a > img {
+    display: inline-block;
+    width: 200px;
+    height: 283px;
+    border-radius: 3px;
+}
+
+.section-title {
+    text-align: left;
+    border-radius: 8px;
+    background-color: #161616;
+    padding: 10px 12px;
+    margin: 7px 0px;
+}
+
+footer {
+    background-color: #161616;
+    text-align: center;
+    margin: 0;
+    padding: 20px 30px;
+}
+
+.social-media {
+    width: 25px;
+    height: 25px;
+    padding: 5px 6px;
+}
+
+.creditos > a {
+    text-decoration: none;
+}
+
+.creditos > a:hover {
+    color: whitesmoke;
+}
+
+.creditos:hover {
+    color: whitesmoke;
+}
+
+.creditos:visited {
+    color: #00A2ED;
+}
+
+a:hover {
+    color: whitesmoke;
+}
+
+button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+.cover-form {
+    border-radius: 5px;
+    width: 200px;
+    height: 283px;
+}

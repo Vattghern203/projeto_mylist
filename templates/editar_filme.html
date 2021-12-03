@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% block title %} {% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+
+    <br>
+    <br>
+
+    <main>
+        <section>
+            <h2>Adicione seu filme</h2>
+            <form method="POST" action="/atualizar_filme">
+                <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
+                <input type="hidden" name="id" id="id" value="{{filme._id}}"><br><br>
+                <input class="form_create" type="text" placeholder="Nome do Filme" name="nome-f" id="nome-f" value="{{filme._nome}}"><br><br>
+                <input class="form_create" type="text" placeholder="Duração" name="duracao" id="duracao" value="{{filme._duracao}}"><br><br>
+                <input class="form_create" type="text" placeholder="Nota" name="nota-f" id="nota-f" value="{{filme._nota}}"><br><br>
+                <input class="form_create" type="number" placeholder="Ano" name="ano-f" id="ano-f" value="{{filme._ano}}"><br><br>
+                <input class="form_create" type="number" placeholder="Gênero" name="genero-f" id="genero-f" value="{{filme._genero_id}}"><br><br>
+                <input class="form_create" type="number" placeholder="Estúdio" name="studio-f" id="studio-f" value="{{filme._estudio_id}}"><br><br>
+                <input class="form_sinopse" type="hidden" placeholder="Sinopse" name="sinopse-f" id="sinopse-f" value="{{filme._sinopse}}">
+                
+                <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
+                <button class="btn_confirm" type="submit">Salvar</button> 
+            </form>
+        </section>
+    </main>
+
+    <br>
+    <br>
+
+{% endblock %}
