@@ -60,29 +60,25 @@
     <main>
         <section id="minha-lista" class="index-section">
             <article>
-                
+                <h2 class="section-title">minha lista</h2>
             </article>
+        </section>
 
+        
+        <section id="series" class="index-section">
+            <article>
+                <h2 class="section-title">séries</h2>
+                {% for serie in series %}
+                <a href="{{ url_for('serie_info', id=serie._id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}" alt="{{serie._nome}}"></a>
+                {% endfor %}
+            </article>
         </section>
 
         <section id="filmes" class="index-section">
             <article>
                 <h2 class="section-title">filmes</h2>
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx99750-zadlgc0NMR46.jpg" alt="Pancreas">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104459-pywEKGQON613.jpg" alt="Yuru Camp Season 2">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx164-QYmGmG2k09pL.jpg" alt="Mononoke Hime">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx104157-rk99XI56PaIC.jpg" alt="Bunny Girl Movie">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx97986-fzJBML9qecb4.jpg" alt="Made in Abyss">
-                <img src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx108489-UqIzSjJ4eOMD.png" alt="Oregairu Season 3">
-            </article>
-        </section>
-
-        <section id="series" class="index-section">
-            <article>
-                <h2 class="section-title">séries</h2>
-                <h2 class="section-title">minha lista</h2>
-                {% for serie in series %}
-                <a href="{{ url_for('serie_info', id=serie._id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}" alt="{{serie._nome}}"></a>
+                {% for filme in filmes %}
+                <a href="{{ url_for('filme_info', id=filme._id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_filme{}.jpg'.format(filme._id))}}" alt="{{filme._nome}}"></a>
                 {% endfor %}
             </article>
         </section>

@@ -32,7 +32,8 @@ genero_dao = GeneroDao(db)
 @app.route('/')
 def index():
     lista = serie_dao.listar()
-    return render_template('index.html', series=lista)
+    listaf = filme_dao.listar_filmes()
+    return render_template('index.html', series=lista, filmes=listaf)
 
 
 # Login / Autenticar / ID
@@ -75,6 +76,10 @@ def atualizar():
     id = request.form['id']
 
     serie = Serie(nome, eps, temps, nota, sinopse, estudio_id, genero_id, ano, id)
+    
+    arquivo = request.files['arquivo']
+    upload_path = app.config['UPLOAD_PATH']
+    arquivo.save(f'{upload_path}/capa_serie{serie._id}.jpg')
 
     serie_dao.salvar(serie)
     return redirect('/tabela')
@@ -92,8 +97,13 @@ def atualizar_filme():
     id = request.form['id']
 
     filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof, id)
-
+    
     filme_dao.salvar_filme(filme)
+    
+    arquivo = request.files['arquivo']
+    upload_path = app.config['UPLOAD_PATH']
+    arquivo.save(f'{upload_path}/capa_filme{filme._id}.jpg')
+
     return redirect('/tabela_filmes')
 
 
@@ -110,13 +120,13 @@ def criar():
     ano = request.form['ano']
 
     serie = Serie(nome, eps, temps, nota, sinopse, estudio_id, genero_id, ano)
-
+    
     serie = serie_dao.salvar(serie)
-
+    
     arquivo = request.files['arquivo']
     upload_path = app.config['UPLOAD_PATH']
     arquivo.save(f'{upload_path}/capa_serie{serie._id}.jpg')
-
+    
     return redirect('/novo')
 
 
@@ -132,13 +142,11 @@ def criar_filme():
 
     filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof)
     
-    filme = filme_dao.salvar_filme(filme)
-    
     arquivo = request.files['arquivo']
     upload_path = app.config['UPLOAD_PATH']
     arquivo.save(f'{upload_path}/capa_filme{filme._id}.jpg')
 
-    filme_dao.salvar_filme(filme)
+    filme = filme_dao.salvar_filme(filme)
     return redirect('/novo_filme')
 
 
@@ -227,6 +235,8 @@ def serie_perfil():
 @app.route('/deletar/<int:id>')
 def deletar(id):
     serie_dao.deletar(id)
+    arquivo = f'capa_serie{id}.jpg'
+    os.remove(os.path.join(app.config['UPLOAD_PATH'], arquivo))
     return redirect(url_for('tabela'))
 
 

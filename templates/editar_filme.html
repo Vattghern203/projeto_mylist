@@ -10,7 +10,7 @@
     <main>
         <section>
             <h2>Adicione seu filme</h2>
-            <form method="POST" action="/atualizar_filme">
+            <form method="POST" action="/atualizar_filme" enctype="multipart/form-data">
                 <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
                 <input type="hidden" name="id" id="id" value="{{filme._id}}"><br><br>
                 <input class="form_create" type="text" placeholder="Nome do Filme" name="nome-f" id="nome-f" value="{{filme._nome}}"><br><br>
