@@ -142,6 +142,7 @@ def criar_filme():
 
     filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof)
     
+    
     arquivo = request.files['arquivo']
     upload_path = app.config['UPLOAD_PATH']
     arquivo.save(f'{upload_path}/capa_filme{filme._id}.jpg')
@@ -243,6 +244,8 @@ def deletar(id):
 @app.route('/deletar_filme/<int:id>')
 def deletar_filme(id):
     filme_dao.deletar_filme(id)
+    arquivo = f'capa_filme{id}.jpg'
+    os.remove(os.path.join(app.config['UPLOAD_PATH'], arquivo))
     return redirect(url_for('tabela_filmes'))
 
 
