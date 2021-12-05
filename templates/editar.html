@@ -21,8 +21,9 @@
                 <input class="form_sinopse" placeholder="Sinopse" name="sinopse" id="sinopse" type="hidden" value="{{serie._sinopse}}">
 
                 <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_serie)}}" alt=""><br><br>
-                <input type="hidden" class="form_create" type="file" name="arquivo" id="arquivo" accept=".jpg" value="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}"><br><br>
-                <a href="{{url_for('editar_capa', id=serie._id)}}"><label>editar capa</label></a>
+                <input type="file" class="form-file" type="file" name="arquivo" id="arquivo" accept=".jpg" value="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}"><br><br>
+                <label for="arquivo">Mudar Capa</label>
+
                 
                 <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
                 <button class="btn_confirm" type="submit">Salvar</button> 

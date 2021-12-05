@@ -71,6 +71,17 @@ form {
     font-family: 'Source Sans Regular', sans-serif;
 }
 
+.form-file {
+    olor: whitesmoke;
+    font-display: inherit;
+    background-color: #2A2A2A;
+    margin: auto;
+    border-radius: 5px;
+    padding: 10px;
+    width: 400px;
+    cursor: pointer;
+}
+
 .form.btn {
     text-align: center;
 }

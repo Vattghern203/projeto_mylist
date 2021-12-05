@@ -78,8 +78,10 @@ def atualizar():
     serie = Serie(nome, eps, temps, nota, sinopse, estudio_id, genero_id, ano, id)
     
     arquivo = request.files['arquivo']
-    upload_path = app.config['UPLOAD_PATH']
-    arquivo.save(f'{upload_path}/capa_serie{serie._id}.jpg')
+    
+    if arquivo:
+        upload_path = app.config['UPLOAD_PATH']
+        arquivo.save(f'{upload_path}/capa_serie{serie._id}.jpg')
 
     serie_dao.salvar(serie)
     return redirect('/tabela')
@@ -98,11 +100,13 @@ def atualizar_filme():
 
     filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof, id)
     
-    filme_dao.salvar_filme(filme)
-    
     arquivo = request.files['arquivo']
-    upload_path = app.config['UPLOAD_PATH']
-    arquivo.save(f'{upload_path}/capa_filme{filme._id}.jpg')
+    
+    if arquivo:
+        upload_path = app.config['UPLOAD_PATH']
+        arquivo.save(f'{upload_path}/capa_filme{filme._id}.jpg')
+        
+    filme_dao.salvar_filme(filme)
 
     return redirect('/tabela_filmes')
 
@@ -142,12 +146,12 @@ def criar_filme():
 
     filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof)
     
+    filme = filme_dao.salvar_filme(filme)
     
     arquivo = request.files['arquivo']
     upload_path = app.config['UPLOAD_PATH']
     arquivo.save(f'{upload_path}/capa_filme{filme._id}.jpg')
 
-    filme = filme_dao.salvar_filme(filme)
     return redirect('/novo_filme')
 
 
