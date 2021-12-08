@@ -18,13 +18,11 @@
                 <input class="form_create" type="number" placeholder="Ano" name="ano" id="ano" value="{{serie._ano}}"><br><br>
                 <input class="form_create" type="number" placeholder="Gênero" name="genero" id="genero" value="{{serie._genero_id}}"><br><br>
                 <input class="form_create" type="number" placeholder="Estúdio" name="studio" id="studio" value="{{serie._estudio_id}}"><br><br>
-                <input class="form_sinopse" placeholder="Sinopse" name="sinopse" id="sinopse" type="hidden" value="{{serie._sinopse}}">
+                <textarea class="form_sinopse" name="sinopse" id="sinopse" cols="30" rows="5">{{serie._sinopse}}</textarea> <br> <br>
 
                 <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_serie)}}" alt=""><br><br>
                 <input type="file" class="form-file" type="file" name="arquivo" id="arquivo" accept=".jpg" value="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}"><br><br>
-                <label for="arquivo">Mudar Capa</label>
 
-                
                 <a href="{{url_for('index')}}"><button class="btn_cancel" type="button">Cancelar</button></a>
                 <button class="btn_confirm" type="submit">Salvar</button> 
             </form>

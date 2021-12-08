@@ -62,6 +62,13 @@ def autenticar():
     return redirect('/login')
 
 
+@app.route('/logout')
+def logout():
+    session['usuario_logado'] = None
+    flash('Nenhum usuário logado')
+    return redirect('/login')
+
+
 # Atualizar
 @app.route('/atualizar', methods=['POST', ])
 def atualizar():
@@ -190,6 +197,8 @@ def criar_genero():
 # Novo
 @app.route('/novo')
 def novo():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=novo')
     lista = estudio_dao.listar_estudio()
     lista_genero = genero_dao.listar_genero()
     return render_template('criar.html', studios=lista, generos=lista_genero)
@@ -197,6 +206,8 @@ def novo():
 
 @app.route('/novo_filme')
 def novo_filme():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=novo_filme')
     lista = estudio_dao.listar_estudio()
     lista_genero = genero_dao.listar_genero()
     return render_template('criar_filme.html', studios=lista, generos=lista_genero)
@@ -209,23 +220,31 @@ def nova_conta():
 
 @app.route('/novo_estudio')
 def novo_estudio():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=novo_estudio')
     return render_template('criar_estudio.html')
 
 
 @app.route('/novo_genero')
 def novo_genero():
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=novo_genero')
     return render_template('criar_genero.html')
 
 
 # Editar
 @app.route('/editar/<int:id>')
 def editar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=editar')
     serie = serie_dao.busca_por_id(id)
     return render_template('editar.html', titulo='Editando uma serie', serie=serie, capa_serie=f'capa_serie{id}.jpg')
 
 
 @app.route('/editar_filme/<int:id>')
 def editar_filme(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=editar_filme')
     filme = filme_dao.busca_filme_por_id(id)
     return render_template('editar_filme.html', filme=filme, capa_filme=f'capa_filme{id}.jpg')
 
@@ -239,6 +258,8 @@ def serie_perfil():
 # Deletar
 @app.route('/deletar/<int:id>')
 def deletar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=index')
     serie_dao.deletar(id)
     arquivo = f'capa_serie{id}.jpg'
     os.remove(os.path.join(app.config['UPLOAD_PATH'], arquivo))
@@ -247,6 +268,8 @@ def deletar(id):
 
 @app.route('/deletar_filme/<int:id>')
 def deletar_filme(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect('/login?proxima=index')
     filme_dao.deletar_filme(id)
     arquivo = f'capa_filme{id}.jpg'
     os.remove(os.path.join(app.config['UPLOAD_PATH'], arquivo))

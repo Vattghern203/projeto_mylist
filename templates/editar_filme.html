@@ -19,7 +19,7 @@
                 <input class="form_create" type="number" placeholder="Ano" name="ano-f" id="ano-f" value="{{filme._ano}}"><br><br>
                 <input class="form_create" type="number" placeholder="Gênero" name="genero-f" id="genero-f" value="{{filme._genero_id}}"><br><br>
                 <input class="form_create" type="number" placeholder="Estúdio" name="studio-f" id="studio-f" value="{{filme._estudio_id}}"><br><br>
-                <input class="form_sinopse" type="hidden" placeholder="Sinopse" name="sinopse-f" id="sinopse-f" value="{{filme._sinopse}}">
+                <textarea class="form_sinopse" name="sinopse-f" id="sinopse-f" cols="30" rows="5">{{ filme._sinopse }}</textarea> <br><br>
                 <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_filme)}}" alt=""><br><br>
                 <input class="form_create" type="file" name="arquivo" id="arquivo" accept=".jpg"><br><br>
                 

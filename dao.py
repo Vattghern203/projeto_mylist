@@ -1,4 +1,4 @@
-from models import Serie, Filme, Usuario, Studio, Genero
+from models import Serie, Filme, Usuario, Studio, Genero, MinhaLista
 
 # Cria
 SQL_CRIA_SERIE = 'INSERT into SERIE (NOME, EPS, TEMPS, NOTA, SINOPSE, STUDIO_ID, GENERO_ID, ANO) values (%s, %s, %s, %s, %s, %s, %s, %s)'
@@ -26,13 +26,20 @@ SQL_STUDIO_POR_ID = 'SELECT ID, NOME from STUDIO where ID = %s'
 SQL_GENERO_POR_ID = 'SELECT ID, NOME from GENERO where ID = %s'
 SQL_SERIE_POR_ID = 'SELECT ID, NOME, EPS, TEMPS, NOTA, SINOPSE, STUDIO_ID, GENERO_ID, ANO from SERIE where ID = %s'
 SQL_FILME_POR_ID = 'SELECT ID, NOME, DURATION, SINOPSE, NOTA, ANO, STUDIO_ID, GENERO_ID, ANO from MOVIE where ID = %s'
-SQL_USUARIO_POR_ID = 'SELECT ID, NOME, EMAIL, SENHA from USUARIO where ID = %s'
+SQL_USUARIO_POR_ID = 'SELECT ID, NOME, EMAIL, SENHA from USUARIO where NOME = %s'
 
 # Delete
 SQL_DELETA_SERIE = 'delete from SERIE where ID = %s'
 SQL_DELETA_FILME = 'delete from MOVIE where ID = %s'
 SQL_DELETA_GENERO = 'delete from GENERO where ID = %s'
 SQL_DELETA_STUDIO = 'delete from STUDIO where ID = %s'
+
+# Retorna (Teste Apenas)
+SQL_STUDIO_NOME = 'SELECT STUDIO.NOME FROM STUDIO WHERE ID = %s'
+SQL_MINHA_LISTA_ID_USER = 'SELECT SERIE.ID FROM SERIE INNER JOIN MINHA_LISTA ON (SERIE.ID = MINHA_LISTA.SERIE_ID)'
+
+SQL_STUDIO_SERIE = 'SELECT STUDIO.NOME FROM STUDIO INNER JOIN SERIE ON (SERIE.STUDIO_ID = STUDIO.ID)'
+SQL_STUDIO_FILME = 'SELECT STUDIO.NOME FROM STUDIO INNER JOIN SERIE ON (SERIE.STUDIO_ID = STUDIO.ID)'
 
 
 class SerieDao:
@@ -83,7 +90,7 @@ def traduz_filmes(filmes):
 
 
 def traduz_usuario(tupla):
-    return Usuario(tupla[0], tupla[1], tupla[2])
+    return Usuario(tupla[1], tupla[2], tupla[3], id=tupla[0])
 
 
 def traduz_estudio(studios):
@@ -96,6 +103,13 @@ def traduz_genero(generos):
     def cria_generos_com_tupla(tupla):
         return Genero(tupla[1], tupla[0])
     return list(map(cria_generos_com_tupla, generos))
+
+
+def traduz_minha_lista(minhas_listas):
+    def cria_listas_com_tupla(tupla):
+        return MinhaLista(tupla[0], tupla[1], tupla[2])
+    return list(map(cria_listas_com_tupla, minhas_listas))
+        
 
 
 class FilmeDao:
@@ -160,7 +174,20 @@ class StudioDao:
 class UsuarioDao:
     def __init__(self, db):
         self.__db = db
-
+        
+    def busca_por_id(self, id):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_USUARIO_POR_ID, (id,))
+        dados = cursor.fetchone()
+        usuario = traduz_usuario(dados) if dados else None
+        return usuario
+    
+    def listar_usuarios(self):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_BUSCA_USUARIO)
+        usuarios = traduz_usuario(cursor.fetchall())
+        return usuarios
+        
     def cria_conta(self, usuario):
         cursor = self.__db.connection.cursor()
 
@@ -172,13 +199,6 @@ class UsuarioDao:
             cursor._id = cursor.lastrowid
 
         self.__db.connection.commit()
-        return usuario
-
-    def busca_por_id(self, id):
-        cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_USUARIO_POR_ID, (id,))
-        dados = cursor.fetchone()
-        usuario = traduz_usuario(dados) if dados else None
         return usuario
 
 

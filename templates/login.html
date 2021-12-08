@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 {% block title %} {% endblock %}
 {% block content %}
+
     <style>
     main {
         padding: 15px;
@@ -90,9 +91,20 @@
    
     <main>
         <section>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul id="messages" class="msg-ul-bad">
+                    {% for message in messages %}
+                    <li class="msg-li">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            {% endwith %}
+
             <h2>Faça login <br> ou <br>crie uma conta</h2>
             <form method="POST" action="/autenticar">
-                <input type="hidden" name="proxima" value="{{proxima}}">
+                <input type="hidden" name="proxima" id="proxima" value="{{ proxima }}">
                 <input class="form_login" type="text" name="usuario" placeholder="Nome de Usuário" required id="usuario"><br><br>
                 <input class="form_login"type="password" placeholder="Senha" required name="senha" id="senha"><br><br>
                 <button class="btn_confirm" type="submit">Confirmar</button><br><br>

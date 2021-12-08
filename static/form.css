@@ -66,13 +66,13 @@ form {
     border-radius: 5px;
     padding: 10px;
     width: 400px;
-    height: 50px;
+    height: 100px;
     size-adjust: none;
     font-family: 'Source Sans Regular', sans-serif;
 }
 
 .form-file {
-    olor: whitesmoke;
+    color: whitesmoke;
     font-display: inherit;
     background-color: #2A2A2A;
     margin: auto;

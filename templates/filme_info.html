@@ -129,6 +129,30 @@
     width: 100px;
 }
 
+.user-info {
+    display: inline-block;
+    width: 400px;
+    height: 30pxpx;
+    background-color: rgb(255, 255, 255);
+    height: 80px;
+    padding: 10px 12px;
+    margin: auto;
+}
+
+.user-btn-fav {
+    width: 35px;
+    height: 35px;
+    margin: auto;
+    background-color: red;
+    border-radius: 3px;
+}
+
+.favorite-btn {
+    width: 25px;
+    height: 25px;
+    margin-top: 15%;
+}
+
 @media screen and (max-width: 601px){
     .tittle {
         text-align: left;
@@ -180,16 +204,32 @@
                 <h4 class="status-content">Estúdio: {{filme._estudio_id}} Kyoto Animation Super 2</h4>
             </div>
         </div>
+
+        <div class="user-info">
+            <div class="user-btn-score">
+                <select name="user-score" id="user-score">
+                    <option value="10">(10) Obra Prima</option>
+                    <option value="9">(9) Fantástico</option>
+                    <option value="8">(8) Muito Bom</option>
+                    <option value="7">(7) Bom</option>
+                    <option value="6">(6) Ok</option>
+                    <option value="5">(5) Mediano</option>
+                    <option value="4">(4) Ruim </option>
+                    <option value="3">(3) Muito Ruim</option>
+                    <option value="2">(2) Horrível</option>
+                    <option value="1">(1) Apavorante</option>
+                </select>
+            </div>
+            <div class="user-btn-fav">
+                <a href="#"><img class="favorite-btn" src="{{url_for('static', filename='empty-heart.png')}}" alt=""></a>
+            </div>
+            <div class="user-btn-edit">
+                <a class="info-link" href="{{ url_for('editar_filme', id=filme._id)}}">editar</a>
+            </div>
+        </div>
     </div>
 
-    <a class="info-link" href="{{ url_for('editar_filme', id=filme._id)}}">editar</a>
-    <a href="#">adicionar a minha lista</a>
-    <select name="status" id="status">
-        <label>Add to list &plus;</label>
-        <option class="info-op" value="Planeja Assitir">Planeja Assistir</option>
-        <option class="info-op" value="Assistindo">Assistindo</option>
-        <option class="info-op" value="Completo">Completo</option>
-    </select>
+    
 </main>
 
 {% endblock %}

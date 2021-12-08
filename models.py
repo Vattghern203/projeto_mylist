@@ -25,11 +25,11 @@ class Filme:
 
 class Usuario:
     def __init__(self, nome, email, senha, id=None):
+        self._id = id
         self._nome = nome
         self._email = email
         self._senha = senha
-        self._id = id
-
+        
 
 class Studio:
     def __init__(self, nome, id=None):
@@ -41,4 +41,11 @@ class Genero:
     def __init__(self, nome, id=None):
         self._id = id
         self._nome = nome
+        
+        
+class MinhaLista:
+    def __init__(self, usuario_id, filme_id, serie_id):
+        self._usuario_id = usuario_id
+        self._filme_id = filme_id
+        self._serie_id = serie_id
         
