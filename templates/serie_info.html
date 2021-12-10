@@ -3,140 +3,178 @@
 {% block content %}
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    .logo {
-        box-sizing: unset;
-    }
+.logo {
+    box-sizing: unset;
+}
 
-    .footer {
-        box-sizing: unset;
-    }
+.footer {
+    box-sizing: unset;
+}
 
-    .social-media {
-        box-sizing: unset;
-    }
+.social-media {
+    box-sizing: unset;
+}
 
-    .content {
-        display: block;
-        background-color:#222222;
-        margin: auto;
-        border-radius: 10px;
-        padding: 10px 12px;
-        height: auto;
-    }
+.content {
+    display: block;
+    background-color:#222222;
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px 12px;
+    height: auto;
+}
 
+.tittle {
+    background-color: #161616;
+    text-align: left;
+    width: auto;
+    margin-bottom: 10px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.title-serie {
+    text-align: left;
+    padding: 10px 12px;
+}
+
+.cover {
+    display: inline-block;
+    background-color: #161616;
+    width: 200px;
+    height: 283px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin: 8px;
+    overflow: hidden;
+}
+
+.sinopse {
+    text-align: left;
+    display: inline-block;
+    height: 283px;
+    width: 80%;
+    border-radius: 5px;
+    margin: 8px;
+    overflow: hidden;
+    padding: 10px 12px;
+    text-size-adjust: inherit;
+}
+
+.cover {
+    display: inline-block;
+    background-color: #161616;
+    object-position: cover;
+    width: 195px;
+    height: 283px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin: 8px;
+    overflow: hidden;
+}
+
+.cover > img {
+    width: 195px;
+    height: 283px;
+
+}
+
+.content-info {
+    background-color: #161616;
+    text-align: left;
+    margin: auto;
+    border-radius: 5px;
+    display: flex;
+}
+
+.status {
+    margin-left: 15px;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 12px;
+}
+
+.status-content {
+    border-radius: 5px;
+    padding: 5px 6px;
+    display: inline-table;
+    text-align: left;
+    margin: auto;
+}
+
+.status-content-studio {
+    margin: auto;
+    width: 200px;
+    text-align: center;
+}
+
+.user-data {
+    display: inline-flex;
+    margin: auto;
+    margin-top: 25px;
+    padding: 10px 12px;
+    border-radius: 5px;
+    background-color: #161616;
+    width: 80%;
+    height: 10%;
+}
+
+.user-data-btn {
+    width: 200px;
+    height: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    display: inline-flex;
+    padding: 10px 12px;
+    border-radius: 3px;
+}
+
+.comment {
+    margin: auto;
+    padding: 10px 12px;
+    border-radius: 5px;
+}
+
+.comentario {
+    margin: 25px;
+    border-radius: 5px;
+    width: 80%;
+    height: 40%;
+    padding: 20px 24px;
+
+}
+
+@media screen and (max-width: 601px){
     .tittle {
-        background-color: #161616;
         text-align: left;
-        width: auto;
-        margin-bottom: 10px;
-        height: 50px;
-        border-radius: 5px;
-    }
-
-    .title-serie {
-        text-align: left;
-        padding: 10px 12px;
-    }
-
-    .cover {
-        display: inline-block;
-        background-color: #161616;
-        width: 200px;
-        height: 283px;
-        border-radius: 5px;
-        margin-top: 10px;
-        margin: 8px;
-        overflow: hidden;
     }
 
     .sinopse {
         text-align: left;
-        display: inline-block;
-        height: 283px;
-        width: 80%;
-        border-radius: 5px;
-        margin: 8px;
-        overflow: hidden;
-        padding: 10px 12px;
-        text-size-adjust: inherit;
     }
+}
 
-    .cover {
-        display: inline-block;
-        background-color: #161616;
-        object-position: cover;
-        width: 195px;
-        height: 283px;
-        border-radius: 5px;
-        margin-top: 10px;
-        margin: 8px;
-        overflow: hidden;
-    }
-
-    .cover > img {
-        width: 195px;
-        height: 283px;
-
-    }
-
-    .content-info {
-        background-color: #161616;
-        text-align: left;
-        margin: auto;
-        border-radius: 5px;
-        display: flex;
-    }
-
-    .status {
-        margin-left: 15px;
-        text-align: center;
-        display: inline-block;
-        padding: 10px 12px;
-    }
-
-    .status-content {
-        border-radius: 5px;
-        padding: 5px 6px;
-        display: inline-table;
-        text-align: left;
-        margin: auto;
-    }
-
-    .status-content-studio {
-        margin: auto;
-        width: 200px;
+@media screen and (min-width: 600px){
+    .tittle {
         text-align: center;
     }
 
-    @media screen and (max-width: 601px){
-        .tittle {
-            text-align: left;
-        }
-
-        .sinopse {
-            text-align: left;
-        }
+    .title-serie {
+        text-align: center;
     }
 
-    @media screen and (min-width: 600px){
-        .tittle {
-            text-align: center;
-        }
-
-        .title-serie {
-            text-align: center;
-        }
-
-        .sinopse {
-            text-align: center;
-            height: 200px;
-            overflow: scroll;
-        }
+    .sinopse {
+        text-align: center;
+        height: 200px;
+        overflow: scroll;
     }
+}
 
 </style>
 
@@ -160,8 +198,18 @@
                 <h4 class="status-content">Temporadas: {{serie._temps}}</h4>
                 <h4 class="status-content">Gênero: {{serie._genero_id}}</h4>
                 <h4 class="status-content">Rank: #666</h4>
-                <h4 class="status-content">Estúdio: {{serie._estudio_id}} Kyoto Animation Super 2</h4>
+                <h4 class="status-content">Estúdio: {{ nome }}</h4>
+                <br>
             </div>
+        </div>
+        <div class="user-data">
+            <input class="user-data-btn" type="number"><p>/10</p>
+            <input class="user-data-btn" type="number">
+            <select class="user-data-btn" name="" id=""></select>
+        </div>
+
+        <div class="comment">
+            <textarea class="comentario" name="comentario" id="comentario" cols="60" rows="20" placeholder="Write a comment here..."></textarea>
         </div>
     </div>
 </main>

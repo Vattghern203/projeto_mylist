@@ -33,6 +33,7 @@ genero_dao = GeneroDao(db)
 def index():
     lista = serie_dao.listar()
     listaf = filme_dao.listar_filmes()
+    
     return render_template('index.html', series=lista, filmes=listaf)
 
 
@@ -40,17 +41,21 @@ def index():
 @app.route('/login')
 def login():
     proxima = request.args.get('proxima')
+    u_id = request.args.get('u_id')
     if proxima == None:
         proxima = ''
+    if u_id == None:
+        u_id = ''
     return render_template('login.html', proxima=proxima)
 
 
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
-    usuario = usuario_dao.busca_por_id(request.form['usuario'])
+    usuario = usuario_dao.busca_por_nome(request.form['usuario'])
+    print(usuario._id)
     if usuario:
         if usuario._senha == request.form['senha']:
-            session['usuario_logado'] = request.form['usuario']
+            session['usuario_logado'] = usuario._id
             flash(request.form['usuario'] + ' logou com sucesso!')
             proxima_pagina = request.form['proxima']
             if proxima_pagina == '':
@@ -237,8 +242,11 @@ def novo_genero():
 def editar(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect('/login?proxima=editar')
+    if 'usuario_logado' in session:
+        usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        print(usuario)
     serie = serie_dao.busca_por_id(id)
-    return render_template('editar.html', titulo='Editando uma serie', serie=serie, capa_serie=f'capa_serie{id}.jpg')
+    return render_template('editar.html', titulo='Editando uma serie', serie=serie, capa_serie=f'capa_serie{id}.jpg', usuario=usuario)
 
 
 @app.route('/editar_filme/<int:id>')

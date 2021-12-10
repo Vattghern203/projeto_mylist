@@ -26,21 +26,14 @@ SQL_STUDIO_POR_ID = 'SELECT ID, NOME from STUDIO where ID = %s'
 SQL_GENERO_POR_ID = 'SELECT ID, NOME from GENERO where ID = %s'
 SQL_SERIE_POR_ID = 'SELECT ID, NOME, EPS, TEMPS, NOTA, SINOPSE, STUDIO_ID, GENERO_ID, ANO from SERIE where ID = %s'
 SQL_FILME_POR_ID = 'SELECT ID, NOME, DURATION, SINOPSE, NOTA, ANO, STUDIO_ID, GENERO_ID, ANO from MOVIE where ID = %s'
-SQL_USUARIO_POR_ID = 'SELECT ID, NOME, EMAIL, SENHA from USUARIO where NOME = %s'
+SQL_USUARIO_POR_NOME = 'SELECT ID, NOME, EMAIL, SENHA from USUARIO where NOME = %s'
+SQL_USUARIO_POR_ID = 'SELECT ID, NOME, EMAIL, SENHA from USUARIO where ID = %s'
 
 # Delete
 SQL_DELETA_SERIE = 'delete from SERIE where ID = %s'
 SQL_DELETA_FILME = 'delete from MOVIE where ID = %s'
 SQL_DELETA_GENERO = 'delete from GENERO where ID = %s'
 SQL_DELETA_STUDIO = 'delete from STUDIO where ID = %s'
-
-# Retorna (Teste Apenas)
-SQL_STUDIO_NOME = 'SELECT STUDIO.NOME FROM STUDIO WHERE ID = %s'
-SQL_MINHA_LISTA_ID_USER = 'SELECT SERIE.ID FROM SERIE INNER JOIN MINHA_LISTA ON (SERIE.ID = MINHA_LISTA.SERIE_ID)'
-
-SQL_STUDIO_SERIE = 'SELECT STUDIO.NOME FROM STUDIO INNER JOIN SERIE ON (SERIE.STUDIO_ID = STUDIO.ID)'
-SQL_STUDIO_FILME = 'SELECT STUDIO.NOME FROM STUDIO INNER JOIN SERIE ON (SERIE.STUDIO_ID = STUDIO.ID)'
-
 
 class SerieDao:
     def __init__(self, db):
@@ -175,12 +168,18 @@ class UsuarioDao:
     def __init__(self, db):
         self.__db = db
         
-    def busca_por_id(self, id):
+    def busca_por_nome(self, nome):
         cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_USUARIO_POR_ID, (id,))
+        cursor.execute(SQL_USUARIO_POR_NOME, (nome,))
         dados = cursor.fetchone()
         usuario = traduz_usuario(dados) if dados else None
         return usuario
+    
+    def busca_por_id(self, id):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_USUARIO_POR_ID, (id,))
+        tupla = cursor.fetchone()
+        return Usuario(tupla[1], tupla[2], tupla[3], id=tupla[0])
     
     def listar_usuarios(self):
         cursor = self.__db.connection.cursor()

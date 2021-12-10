@@ -105,6 +105,7 @@
             <h2>Faça login <br> ou <br>crie uma conta</h2>
             <form method="POST" action="/autenticar">
                 <input type="hidden" name="proxima" id="proxima" value="{{ proxima }}">
+                <input type="hidden" name="id" id="id" value="{{id}}"> 
                 <input class="form_login" type="text" name="usuario" placeholder="Nome de Usuário" required id="usuario"><br><br>
                 <input class="form_login"type="password" placeholder="Senha" required name="senha" id="senha"><br><br>
                 <button class="btn_confirm" type="submit">Confirmar</button><br><br>

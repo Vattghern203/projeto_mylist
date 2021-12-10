@@ -266,6 +266,8 @@ input {
 
 textarea {
     resize: none;
+    border-radius: 5px;
+    font-family: 'Source Sans Regular', sans-serif;
 }
 
 .cover-form {
