@@ -8,6 +8,8 @@
     <table id="works">
         <thead>
             <tr>
+                {% if usuario: %}
+
                 <th>Nome</th>
                 <th>Episódios</th>
                 <th>Temporadas</th>
@@ -17,21 +19,50 @@
                 <th>Ano</th>
                 <th></th>
                 <th></th>
+
+                {% else %}
+
+                <th>Nome</th>
+                <th>Episódios</th>
+                <th>Temporadas</th>
+                <th>Nota</th>
+                <th>Estúdio</th>
+                <th>Gênero</th>
+                <th>Ano</th>
+                
+                {% endif %}
             </tr>
         </thead>
         <tbody>
         {% for serie in series %}
+            {% if usuario: %}
+            
             <tr>
                 <td id="work-title" class="table-item"><a href="{{ url_for('serie_info', id=serie._id)}}">{{serie._nome}}</a></td>
                 <td class="table-item">{{serie._eps}}</td>
                 <td class="table-item">{{serie._temps}}</td>
                 <td class="table-item">{{serie._nota}}</td>
-                <td class="table-item">{{serie._estudio_id}}</td>
-                <td class="table-item">{{serie._genero_id}}</td>
+                <td class="table-item">{{serie._estudio}}</td>
+                <td class="table-item">{{serie._genero}}</td>
                 <td class="table-item">{{serie._ano}}</td>
                 <td><a class="btn_edit" href="{{ url_for('editar', id=serie._id)}}">Editar</a></td>
                 <td><a class="btn_delete" href="{{ url_for('deletar', id=serie._id)}}">Deletar</a></td>
             </tr>
+
+            {% else %}
+
+            <tr>
+                <td id="work-title" class="table-item"><a href="{{ url_for('serie_info', id=serie._id)}}">{{serie._nome}}</a></td>
+                <td class="table-item">{{serie._eps}}</td>
+                <td class="table-item">{{serie._temps}}</td>
+                <td class="table-item">{{serie._nota}}</td>
+                <td class="table-item">{{serie._estudio}}</td>
+                <td class="table-item">{{serie._genero}}</td>
+                <td class="table-item">{{serie._ano}}</td>
+            </tr>
+
+            {% endif %}
+
         {% endfor %}
     </table>
 <br><br>

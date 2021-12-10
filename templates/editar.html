@@ -16,8 +16,25 @@
                 <input class="form_create" type="number" placeholder="Temporadas" name="temps" id="temps" value="{{serie._temps}}"><br><br>
                 <input class="form_create" type="text" placeholder="Nota" name="nota" id="nota" value="{{serie._nota}}"><br><br>
                 <input class="form_create" type="number" placeholder="Ano" name="ano" id="ano" value="{{serie._ano}}"><br><br>
-                <input class="form_create" type="number" placeholder="Gênero" name="genero" id="genero" value="{{serie._genero_id}}"><br><br>
-                <input class="form_create" type="number" placeholder="Estúdio" name="studio" id="studio" value="{{serie._estudio_id}}"><br><br>
+                <select class="form_select" name="genero" id="genero">
+                {% for genero in generos %}
+                    {% if serie._genero_id == genero._id %}
+                        <option value="{{genero._id}}" selected>{{genero._nome}}</option>
+                    {% else %}
+                        <option value="{{genero._id}}">{{genero._nome}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select> <br><br>
+                <select class="form_select" name="studio" id="studio">
+                {% for studio in studios %}
+                    {% if serie._estudio_id == studio._id %}
+                        <option value="{{studio._id}}" selected>{{studio._nome}}</option>
+                    {% else %}
+                        <option value="{{studio._id}}">{{studio._nome}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select> <br> <br>
+
                 <textarea class="form_sinopse" name="sinopse" id="sinopse" cols="30" rows="5">{{serie._sinopse}}</textarea> <br> <br>
 
                 <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_serie)}}" alt=""><br><br>

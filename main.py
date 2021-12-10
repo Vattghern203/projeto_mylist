@@ -1,10 +1,10 @@
 from flask import Flask, render_template, flash, url_for, request, session, send_from_directory, redirect
 
-from dao import UsuarioDao, FilmeDao, SerieDao, StudioDao, GeneroDao
+from dao import UsuarioDao, FilmeDao, SerieDao, StudioDao, GeneroDao, SerieListDao
 
 from flask_mysqldb import MySQL
 
-from models import Serie, Filme, Usuario, Studio, Genero
+from models import Serie, Filme, Usuario, Studio, Genero, SerieList, MovieList
 
 import os
 
@@ -26,6 +26,7 @@ serie_dao = SerieDao(db)
 filme_dao = FilmeDao(db)
 estudio_dao = StudioDao(db)
 genero_dao = GeneroDao(db)
+lista_serie_dao = SerieListDao(db)
 
 
 # paginas
@@ -33,6 +34,10 @@ genero_dao = GeneroDao(db)
 def index():
     lista = serie_dao.listar()
     listaf = filme_dao.listar_filmes()
+    if session['usuario_logado']:
+        usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        
+        return render_template('index.html', series=lista, filmes=listaf, usuario=usuario)
     
     return render_template('index.html', series=lista, filmes=listaf)
 
@@ -87,7 +92,7 @@ def atualizar():
     ano = request.form['ano']
     id = request.form['id']
 
-    serie = Serie(nome, eps, temps, nota, sinopse, estudio_id, genero_id, ano, id)
+    serie = Serie(nome, eps, temps, sinopse, nota, ano, estudio_id, genero_id, None, None, id)
     
     arquivo = request.files['arquivo']
     
@@ -135,7 +140,7 @@ def criar():
     genero_id = request.form['genero']
     ano = request.form['ano']
 
-    serie = Serie(nome, eps, temps, nota, sinopse, estudio_id, genero_id, ano)
+    serie = Serie(nome, eps, temps, sinopse, nota, ano, estudio_id, genero_id, None, None)
     
     serie = serie_dao.salvar(serie)
     
@@ -246,7 +251,9 @@ def editar(id):
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
         print(usuario)
     serie = serie_dao.busca_por_id(id)
-    return render_template('editar.html', titulo='Editando uma serie', serie=serie, capa_serie=f'capa_serie{id}.jpg', usuario=usuario)
+    lista = estudio_dao.listar_estudio()
+    lista_genero = genero_dao.listar_genero()
+    return render_template('editar.html', titulo='Editando uma serie', serie=serie, capa_serie=f'capa_serie{id}.jpg', usuario=usuario, studios=lista, generos=lista_genero)
 
 
 @app.route('/editar_filme/<int:id>')
@@ -299,6 +306,9 @@ def teste():
 @app.route('/serie_info/<int:id>')
 def serie_info(id):
     serie = serie_dao.busca_por_id(id)
+    if session['usuario_logado']:
+        usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{id}.jpg', usuario=usuario)
     return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{id}.jpg')
 
 
@@ -312,6 +322,9 @@ def filme_info(id):
 @app.route('/tabela')
 def tabela():
     lista = serie_dao.listar()
+    if session['usuario_logado']:
+        usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        return render_template('tabela_serie.html', series=lista, usuario=usuario)
     return render_template('tabela_serie.html', series=lista)
 
 
@@ -326,6 +339,17 @@ def imagem(nome_arquivo):
     return send_from_directory('uploads', nome_arquivo)
 
 
+@app.route('/add_serie', methods=['POST', ])
+def add_serie():
+    usuario_id = request.form['usuario_id']
+    serie_id = request.form['serie_id']
+    
+    lista_serie = SerieList(usuario_id, serie_id)
+    
+    lista_serie_dao.add_serie(lista_serie)
+    
+    return redirect ('/tabela')
+    
 # Main
 if __name__ == '__main__':
     app.run(debug=True)

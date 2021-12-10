@@ -1,14 +1,16 @@
 class Serie:
-    def __init__(self, nome, eps, temps, nota, sinopse, estudio_id, genero_id, ano, id=None):
+    def __init__(self, nome, eps, temps, sinopse, nota, ano, estudio_id, genero_id, estudio, genero, id=None):
         self._id = id
         self._nome = nome
         self._eps = eps
         self._temps = temps 
-        self._nota = nota
         self._sinopse = sinopse
-        self._genero_id = genero_id
-        self._estudio_id = estudio_id
+        self._nota = nota
         self._ano = ano
+        self._estudio_id = estudio_id
+        self._genero_id = genero_id
+        self._estudio = estudio
+        self._genero = genero
         
 
 class Filme:
@@ -43,9 +45,14 @@ class Genero:
         self._nome = nome
         
         
-class MinhaLista:
-    def __init__(self, usuario_id, filme_id, serie_id):
+class SerieList:
+    def __init__(self, usuario_id, serie_id):
+        self._usuario_id = usuario_id
+        self._serie_id = serie_id
+        
+
+class MovieList:
+    def __init__(self, usuario_id, filme_id):
         self._usuario_id = usuario_id
         self._filme_id = filme_id
-        self._serie_id = serie_id
         

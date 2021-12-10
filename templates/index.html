@@ -53,18 +53,39 @@
                 </div>
             </div>
             <input class="search-bar" type="text" placeholder="search...">
-            <a id="login_button" href="{{url_for('login')}}">login</a>
+            {% if usuario: %}
+
+            <div id="login_button" class="dropdown">
+                <button class="dropbtn">
+                    {{usuario._nome}}
+                </button>
+                <div class="dropdown-content login-dropdown">  
+                    <a href="#">minha lista</a>
+                    <a href="{{url_for('logout')}}">logout</a>
+                </div>
+            </div>    
+
+            {% else %}
+
+                <a id="login_button" href="{{url_for('login')}}">login</a>
+
+            {% endif %}   
         </nav>
     </header>
     {% endblock %}
 
     {% block content %}
     <main>
+
+        {% if usuario: %}
+
         <section id="minha-lista" class="index-section">
             <article>
                 <h2 class="section-title">minha lista</h2>
             </article>
         </section>
+
+        {% endif %}
 
         <section id="series" class="index-section">
             <article class="cover-container">
