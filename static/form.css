@@ -1,3 +1,7 @@
+*::selection {
+    background-color: #00A2ED;
+}
+
 main {
     padding: 15px;
     width: 500px;
@@ -24,8 +28,9 @@ form {
     width: 400px;
 }
 
-.form_create:active {
-    color: whitesmoke;
+.form_create:hover {
+    background-color: whitesmoke;
+    color: black;
 }
 
 .form_label {
@@ -43,16 +48,18 @@ form {
 }
 
 .form_select {
-    width: 410px;
+    width: 420px;
     height: 40px;
     border-radius: 5px;
+    border: none;
     text-decoration: none;
-    outline: #222222;
+    background-color: #2A2A2A;
+    color: whitesmoke;
 }
 
-.form_select:active {
-    text-decoration: none;
-    border-color: #222222
+.form_select:hover {
+    background-color: whitesmoke;
+    color: black;
 }
 
 .form_sinopse {
@@ -69,6 +76,11 @@ form {
     height: 100px;
     size-adjust: none;
     font-family: 'Source Sans Regular', sans-serif;
+}
+
+.form_sinopse:hover {
+    color: black;
+    background-color: whitesmoke;
 }
 
 .form-file {

@@ -17,8 +17,27 @@
                 <input class="form_create" type="text" placeholder="Duração" name="duracao" id="duracao" value="{{filme._duracao}}"><br><br>
                 <input class="form_create" type="text" placeholder="Nota" name="nota-f" id="nota-f" value="{{filme._nota}}"><br><br>
                 <input class="form_create" type="number" placeholder="Ano" name="ano-f" id="ano-f" value="{{filme._ano}}"><br><br>
-                <input class="form_create" type="number" placeholder="Gênero" name="genero-f" id="genero-f" value="{{filme._genero_id}}"><br><br>
-                <input class="form_create" type="number" placeholder="Estúdio" name="studio-f" id="studio-f" value="{{filme._estudio_id}}"><br><br>
+                <label>Gênero <br><br></label>
+                <select class="form_select" name="genero-f" id="genero-f">
+                {% for genero in generos %}
+                    {% if filme._genero_id == genero._id %}
+                        <option value="{{genero._id}}" selected>{{genero._nome}}</option>
+                    {% else %}
+                        <option value="{{genero._id}}">{{genero._nome}}</option>
+                    {% endif %}
+                {% endfor %}
+
+                </select> <br><br>
+                <label>Estúdio <br><br> </label>
+                <select class="form_select" name="studio-f" id="studio-f">
+                {% for studio in studios %}
+                    {% if filme._estudio_id == studio._id %}
+                        <option value="{{studio._id}}" selected>{{studio._nome}}</option>
+                    {% else %}
+                        <option value="{{studio._id}}">{{studio._nome}}</option>
+                    {% endif %}
+                {% endfor %}
+                </select> <br> <br>
                 <textarea class="form_sinopse" name="sinopse-f" id="sinopse-f" cols="30" rows="5">{{ filme._sinopse }}</textarea> <br><br>
                 <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_filme)}}" alt=""><br><br>
                 <input class="form_create" type="file" name="arquivo" id="arquivo" accept=".jpg"><br><br>

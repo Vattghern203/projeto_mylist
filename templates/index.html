@@ -82,6 +82,11 @@
         <section id="minha-lista" class="index-section">
             <article>
                 <h2 class="section-title">minha lista</h2>
+                {% for minha_serie in minhas_series %}
+                    {% if minha_serie._usuario_id == usuario._id %}
+                    <a href="{{ url_for('serie_info', id=minha_serie._serie_id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(minha_serie._serie_id))}}" alt=""></a>
+                    {% endif %}
+                {% endfor %}
             </article>
         </section>
 

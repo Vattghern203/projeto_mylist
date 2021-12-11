@@ -151,6 +151,10 @@ nav {
     font-size: 17px;
 }
 
+::-webkit-scrollbar-corner {
+    background-color: #302f2f;
+}
+
 @media screen and (max-width: 600px) {
     .topnav a, .topnav input[type=text] {
       float: none;
@@ -189,6 +193,11 @@ main {
 body {
     margin: 0;
 }
+
+a:visited {
+    color: #00A2ED;
+}
+
 
 .index-section {
     margin: 0;
@@ -322,4 +331,15 @@ textarea {
     width: auto;
     height: auto;
     padding: 20px 24px;
+}
+
+.comentario {
+    background-color: #2A2A2A;
+    color: whitesmoke;
+    
+}
+
+.comentario:hover{
+    background-color: whitesmoke;
+    color: black;
 }

@@ -124,13 +124,9 @@
 }
 
 .user-data-btn {
-    width: 200px;
+    width: 125px;
     height: 25px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: 100px;
-    margin-right: 100px;
-    display: inline-flex;
+    margin: auto;
     padding: 10px 12px;
     border-radius: 3px;
 }
@@ -206,9 +202,13 @@
         {% if usuario: %}
 
         <div class="user-data">
-            <input class="user-data-btn" type="number"><p>/10</p>
-            <input class="user-data-btn" type="number">
-            <select class="user-data-btn" name="" id=""></select>
+            <label for="user-temps">Temporada:</label>
+            <input id="user-temps" class="user-data-btn" type="number">
+            <label for="user-eps">Episódios:</label>
+            <input id="user-eps" class="user-data-btn" type="number">
+            <select class="user-data-btn" name="" id="">
+                <option value=""></option>
+            </select>
         </div>
 
         <div class="comment">
@@ -219,6 +219,7 @@
             <input type="hidden" name="usuario_id" id="usuario_id" value={{usuario._id}}>
             <input type="hidden" name="serie_id" id="serie_id" value={{serie._id}}>
             <a href="{{ url_for('serie_info', id=serie._id )}}"><button type="submit">favoritar</button></a>
+            <a href="{{ url_for('desfavorita_serie', usuario_id=usuario._id, serie_id=serie._id) }}">desfavoritar</a>
         </form>
 
         {% endif %}

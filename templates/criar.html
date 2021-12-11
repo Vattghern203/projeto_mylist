@@ -17,18 +17,18 @@
                 <input class="form_create" type="number" placeholder="Temporadas" name="temps" id="temps"><br><br>
                 <input class="form_create" type="text" placeholder="Nota" name="nota" id="nota"><br><br>
                 <input class="form_create" type="number" placeholder="Ano" name="ano" id="ano"><br><br>
-                <input class="form_create" list="generos" name="genero" id="genero" placeholder="Gênero">
-                <datalist class="form_select" name="generos" id="generos">
+                <label>Gênero <br><br></label>
+                <select aria-placeholder="Gênero" class="form_select" name="genero" id="genero">
                 {% for genero in generos %}
-                    <option class="form_options" value="{{genero._id}}">{{genero._nome}}</option>
-                {% endfor %}        
-                    </datalist><br><br>
-                <input class="form_create" list="estudios" name="studio" id="studio" placeholder="Estúdios">
-                <datalist class="form_select" name="estudios" id="estudios">
+                    <option value="{{genero._id}}">{{genero._nome}}</option>
+                {% endfor %}
+                </select> <br><br>
+                <label> Estúdio <br><br> </label>
+                <select class="form_select" name="studio" id="studio">
                 {% for studio in studios %}
-                    <option class="form_options" value="{{studio._id}}">{{studio._nome}}</option>
-                {% endfor %}        
-                </datalist><br><br>
+                    <option value="{{studio._id}}">{{studio._nome}}</option>
+                {% endfor %}
+                </select> <br> <br>
                 <textarea class="form_sinopse" placeholder="Sinopse" name="sinopse" id="sinopse" cols="30" rows="5"></textarea><br><br>
                 <label>Cover<br><br></label>
                 <img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_padrao.gif')}}" alt="Capa Default"><br><br>

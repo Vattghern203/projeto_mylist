@@ -14,14 +14,16 @@ class Serie:
         
 
 class Filme:
-    def __init__(self, nome, duracao, sinopse, nota, ano, genero_id, estudio_id, id=None):
+    def __init__(self, nome, duracao, sinopse, nota, estudio_id,  genero_id, ano, estudio, genero, id=None):
         self._nome = nome
         self._duracao = duracao
         self._sinopse = sinopse
         self._nota = nota
-        self._ano = ano
-        self._genero_id = genero_id
         self._estudio_id = estudio_id
+        self._genero_id = genero_id
+        self._ano = ano
+        self._estudio = estudio
+        self._genero = genero
         self._id = id
 
 

@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+table {
+    margin: auto;
+    padding: 10px 12px;
+}
+
 #works {
     border-collapse: collapse;
     margin: auto;

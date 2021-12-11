@@ -34,10 +34,11 @@ lista_serie_dao = SerieListDao(db)
 def index():
     lista = serie_dao.listar()
     listaf = filme_dao.listar_filmes()
-    if session['usuario_logado']:
+    if session:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        minhas_series = lista_serie_dao.listar_minhas_series()
         
-        return render_template('index.html', series=lista, filmes=listaf, usuario=usuario)
+        return render_template('index.html', series=lista, filmes=listaf, usuario=usuario, minhas_series=minhas_series)
     
     return render_template('index.html', series=lista, filmes=listaf)
 
@@ -86,10 +87,10 @@ def atualizar():
     eps = request.form['eps']
     temps = request.form['temps']
     nota = request.form['nota']
+    ano = request.form['ano']
     sinopse = request.form['sinopse']
     estudio_id = request.form['studio']
     genero_id = request.form['genero']
-    ano = request.form['ano']
     id = request.form['id']
 
     serie = Serie(nome, eps, temps, sinopse, nota, ano, estudio_id, genero_id, None, None, id)
@@ -109,13 +110,13 @@ def atualizar_filme():
     nomef = request.form['nome-f']
     duracao = request.form['duracao']
     notaf = request.form['nota-f']
-    anof = request.form['ano-f']
     sinopsef = request.form['sinopse-f']
     studiof = request.form['studio-f']
     generof = request.form['genero-f']
+    anof = request.form['ano-f']
     id = request.form['id']
 
-    filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof, id)
+    filme = Filme(nomef, duracao, sinopsef, notaf, studiof, generof, anof, None, None, id)
     
     arquivo = request.files['arquivo']
     
@@ -134,8 +135,8 @@ def criar():
     nome = request.form['nome']
     eps = request.form['eps']
     temps = request.form['temps']
-    nota = request.form['nota']
     sinopse = request.form['sinopse']
+    nota = request.form['nota']
     estudio_id = request.form['studio']
     genero_id = request.form['genero']
     ano = request.form['ano']
@@ -161,7 +162,7 @@ def criar_filme():
     studiof = request.form['studio-f']
     generof = request.form['genero-f']
 
-    filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof)
+    filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof, None, None)
     
     filme = filme_dao.salvar_filme(filme)
     
@@ -261,7 +262,9 @@ def editar_filme(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect('/login?proxima=editar_filme')
     filme = filme_dao.busca_filme_por_id(id)
-    return render_template('editar_filme.html', filme=filme, capa_filme=f'capa_filme{id}.jpg')
+    lista = estudio_dao.listar_estudio()
+    lista_genero = genero_dao.listar_genero()
+    return render_template('editar_filme.html', filme=filme, capa_filme=f'capa_filme{id}.jpg', studios=lista, generos=lista_genero)
 
 
 # Info
@@ -275,6 +278,7 @@ def serie_perfil():
 def deletar(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect('/login?proxima=index')
+    lista_serie_dao.desfavorita_serie_all(id)
     serie_dao.deletar(id)
     arquivo = f'capa_serie{id}.jpg'
     os.remove(os.path.join(app.config['UPLOAD_PATH'], arquivo))
@@ -349,6 +353,12 @@ def add_serie():
     lista_serie_dao.add_serie(lista_serie)
     
     return redirect ('/tabela')
+
+@app.route('/desfavorita_serie/<int:usuario_id>/<int:serie_id>')
+def desfavorita_serie(usuario_id, serie_id):
+    lista_serie_dao.desfavorita_serie_lista(usuario_id, serie_id)
+    return redirect(url_for('tabela'))
+
     
 # Main
 if __name__ == '__main__':
