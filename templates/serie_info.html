@@ -193,7 +193,6 @@
                 <h4 class="status-content">Episódios: {{serie._eps}}</h4>
                 <h4 class="status-content">Temporadas: {{serie._temps}}</h4>
                 <h4 class="status-content">Gênero: {{serie._genero}}</h4>
-                <h4 class="status-content">Rank: #666</h4>
                 <h4 class="status-content">Estúdio: {{ serie._estudio }}</h4>
                 <br>
             </div>
@@ -218,8 +217,8 @@
         <form action="{{url_for('add_serie')}}" method="post">
             <input type="hidden" name="usuario_id" id="usuario_id" value={{usuario._id}}>
             <input type="hidden" name="serie_id" id="serie_id" value={{serie._id}}>
-            <a href="{{ url_for('serie_info', id=serie._id )}}"><button type="submit">favoritar</button></a>
-            <a href="{{ url_for('desfavorita_serie', usuario_id=usuario._id, serie_id=serie._id) }}">desfavoritar</a>
+            <a href="{{ url_for('serie_info', id=serie._id )}}"><button class="btn_add_fav" type="submit">favoritar</button></a>
+            <a class="btn_remove_fav" href="{{ url_for('desfavorita_serie', usuario_id=usuario._id, serie_id=serie._id) }}">desfavoritar</a>
         </form>
 
         {% endif %}

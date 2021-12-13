@@ -4,9 +4,11 @@
 
 <link rel="stylesheet" href="{{ url_for('static', filename='table.css') }}">
 
+
     <table id="works">
         <thead>
             <tr>
+                {% if usuario: %}
                 <th>Nome</th>
                 <th>Duração</th>
                 <th>Nota</th>
@@ -15,10 +17,22 @@
                 <th>Ano</th>
                 <th></th>
                 <th></th>
+
+                {% else %}
+
+                <th>Nome</th>
+                <th>Duração</th>
+                <th>Nota</th>
+                <th>Estúdio</th>
+                <th>Gênero</th>
+                <th>Ano</th>
+
+                {% endif %}
             </tr>
         </thead>
         <tbody>
         {% for filme in filmes %}
+            {% if usuario: %}
             <tr>
                 <td><a href="{{ url_for('filme_info', id=filme._id)}}">{{filme._nome}}</a></td>
                 <td>{{filme._duracao}}</td>
@@ -29,6 +43,20 @@
                 <td class="form-btn"><a class="btn_edit" href="{{ url_for('editar_filme', id=filme._id)}}">Editar</a></td>
                 <td class="form-btn"><a class="btn_delete" href="{{ url_for('deletar_filme', id=filme._id)}}">Deletar</a></td>
             </tr>
+
+            {% else %}
+
+            <tr>
+                <td><a href="{{ url_for('filme_info', id=filme._id)}}">{{filme._nome}}</a></td>
+                <td>{{filme._duracao}}</td>
+                <td>{{filme._nota}}</td>
+                <td>{{filme._estudio_id}}</td>
+                <td>{{filme._genero_id}}</td>
+                <td>{{filme._ano}}</td>
+            </tr>
+
+            {% endif %}
+
         {% endfor %}
         </tbody>
     </table>

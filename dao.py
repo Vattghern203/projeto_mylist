@@ -2,7 +2,7 @@ from models import Serie, Filme, Usuario, Studio, Genero, SerieList, MovieList
 
 # Cria
 SQL_CRIA_SERIE = 'INSERT into SERIE (NOME, EPS, TEMPS, SINOPSE, NOTA, ANO, STUDIO_ID, GENERO_ID) values (%s, %s, %s, %s, %s, %s, %s, %s)'
-SQL_CRIA_FILME = 'INSERT into MOVIE (NOME, DURATION, SINOPSE, STUDIO_ID, GENERO_ID, NOTA, ANO) values (%s, %s, %s, %s, %s, %s, %s)'
+SQL_CRIA_FILME = 'INSERT into MOVIE (NOME, DURATION, SINOPSE, NOTA, STUDIO_ID, GENERO_ID, ANO) values (%s, %s, %s, %s, %s, %s, %s)'
 SQL_CRIA_STUDIO = 'INSERT into STUDIO (NOME) values (%s)'
 SQL_CRIA_GENERO = 'INSERT into GENERO (NOME) values (%s)'
 SQL_CRIA_USUARIO = 'INSERT into USUARIO (NOME, EMAIL, SENHA) values (%s, %s, %s)'
@@ -23,6 +23,7 @@ SQL_BUSCA_STUDIO = 'SELECT ID, NOME from STUDIO'
 SQL_BUSCA_GENERO = 'SELECT ID, NOME from GENERO'
 # Teste
 SQL_BUSCA_MINHAS_SERIES = 'SELECT SERIE_ID from SERIE_LIST where USUARIO_ID = %s'
+SQL_BUSCA_FAVORITO = 'SELECT USUARIO_ID, SERIE_ID FROM SERIE_LIST Where USUARIO_ID = %s and SERIE_ID = %s'
 
 
 SQL_STUDIO_POR_ID = 'SELECT ID, NOME from STUDIO where ID = %s'
@@ -259,3 +260,10 @@ class SerieListDao:
     def desfavorita_serie_lista(self, usuario_id, serie_id):
         self.__db.connection.cursor().execute(SQL_REMOVE_LISTA_SERIE, (usuario_id, serie_id))
         self.__db.connection.commit()
+        
+    def busca_favorito_por_id(self, usuario_id, serie_id):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_BUSCA_FAVORITO, (usuario_id, serie_id))
+        tupla = cursor.fetchone()
+        return SerieList(tupla[0], tupla[1])
+    

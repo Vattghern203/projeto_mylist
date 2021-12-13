@@ -32,16 +32,26 @@ lista_serie_dao = SerieListDao(db)
 # paginas
 @app.route('/')
 def index():
-    lista = serie_dao.listar()
-    listaf = filme_dao.listar_filmes()
-    if session:
+    if session['usuario_logado'] == None:
+        lista = serie_dao.listar()
+        listaf = filme_dao.listar_filmes()
+
+        return render_template('index.html', series=lista, filmes=listaf)
+
+    if session['usuario_logado']:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
         minhas_series = lista_serie_dao.listar_minhas_series()
+        lista = serie_dao.listar()
+        listaf = filme_dao.listar_filmes()
         
         return render_template('index.html', series=lista, filmes=listaf, usuario=usuario, minhas_series=minhas_series)
-    
-    return render_template('index.html', series=lista, filmes=listaf)
 
+    else:
+        lista = serie_dao.listar()
+        listaf = filme_dao.listar_filmes()
+
+        return render_template('index.html', series=lista, filmes=listaf)
+    
 
 # Login / Autenticar / ID
 @app.route('/login')
@@ -162,7 +172,7 @@ def criar_filme():
     studiof = request.form['studio-f']
     generof = request.form['genero-f']
 
-    filme = Filme(nomef, duracao, sinopsef, notaf, anof, generof, studiof, None, None)
+    filme = Filme(nomef, duracao, sinopsef, notaf, studiof, generof, anof, None, None)
     
     filme = filme_dao.salvar_filme(filme)
     
@@ -335,6 +345,9 @@ def tabela():
 @app.route('/tabela_filmes')
 def tabela_filmes():
     lista = filme_dao.listar_filmes()
+    if session['usuario_logado']:
+        usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        return render_template('tabela_filmes.html', filmes=lista, usuario=usuario)
     return render_template('tabela_filmes.html', filmes=lista)
 
 
@@ -351,13 +364,18 @@ def add_serie():
     lista_serie = SerieList(usuario_id, serie_id)
     
     lista_serie_dao.add_serie(lista_serie)
-    
-    return redirect ('/tabela')
+    serie = serie_dao.busca_por_id(serie_id)
+    usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+
+    return render_template('serie_info.html', serie=serie, usuario=usuario, capa_serie=f'capa_serie{serie_id}.jpg')
+
 
 @app.route('/desfavorita_serie/<int:usuario_id>/<int:serie_id>')
 def desfavorita_serie(usuario_id, serie_id):
     lista_serie_dao.desfavorita_serie_lista(usuario_id, serie_id)
-    return redirect(url_for('tabela'))
+    usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+    serie = serie_dao.busca_por_id(serie_id)
+    return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{serie_id}.jpg', usuario=usuario)
 
     
 # Main
