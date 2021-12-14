@@ -32,13 +32,13 @@ lista_serie_dao = SerieListDao(db)
 # paginas
 @app.route('/')
 def index():
-    if session['usuario_logado'] == None:
+    if session == None:
         lista = serie_dao.listar()
         listaf = filme_dao.listar_filmes()
 
         return render_template('index.html', series=lista, filmes=listaf)
 
-    if session['usuario_logado']:
+    if session:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
         minhas_series = lista_serie_dao.listar_minhas_series()
         lista = serie_dao.listar()
@@ -62,6 +62,7 @@ def login():
         proxima = ''
     if u_id == None:
         u_id = ''
+        
     return render_template('login.html', proxima=proxima)
 
 
@@ -75,11 +76,14 @@ def autenticar():
             flash(request.form['usuario'] + ' logou com sucesso!')
             proxima_pagina = request.form['proxima']
             if proxima_pagina == '':
+                
                 return redirect('/')
             else:
+                
                 return redirect('/'.format(proxima_pagina))
 
     flash('Erro ao logar! Tente novamente.')
+    
     return redirect('/login')
 
 
@@ -87,6 +91,7 @@ def autenticar():
 def logout():
     session['usuario_logado'] = None
     flash('Nenhum usuário logado')
+    
     return redirect('/login')
 
 
@@ -112,6 +117,7 @@ def atualizar():
         arquivo.save(f'{upload_path}/capa_serie{serie._id}.jpg')
 
     serie_dao.salvar(serie)
+    
     return redirect('/tabela')
 
 
@@ -192,6 +198,7 @@ def criar_conta():
     usuario = Usuario(nomeu, email, senha)
 
     usuario_dao.cria_conta(usuario)
+    
     return redirect('/login')
 
 
@@ -202,6 +209,7 @@ def criar_estudio():
     studio = Studio(nomee)
 
     estudio_dao.salvar_estudio(studio)
+    
     return redirect('/novo_estudio')
 
 
@@ -212,6 +220,7 @@ def criar_genero():
     genero = Genero(nomeg)
 
     genero_dao.criar_genero(genero)
+    
     return redirect('/novo_genero')
 
 
@@ -222,6 +231,7 @@ def novo():
         return redirect('/login?proxima=novo')
     lista = estudio_dao.listar_estudio()
     lista_genero = genero_dao.listar_genero()
+    
     return render_template('criar.html', studios=lista, generos=lista_genero)
 
 
@@ -231,25 +241,31 @@ def novo_filme():
         return redirect('/login?proxima=novo_filme')
     lista = estudio_dao.listar_estudio()
     lista_genero = genero_dao.listar_genero()
+    
     return render_template('criar_filme.html', studios=lista, generos=lista_genero)
 
 
 @app.route('/nova_conta')
 def nova_conta():
+    
     return render_template('criar_conta.html')
 
 
 @app.route('/novo_estudio')
 def novo_estudio():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        
         return redirect('/login?proxima=novo_estudio')
+    
     return render_template('criar_estudio.html')
 
 
 @app.route('/novo_genero')
 def novo_genero():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        
         return redirect('/login?proxima=novo_genero')
+    
     return render_template('criar_genero.html')
 
 
@@ -257,23 +273,29 @@ def novo_genero():
 @app.route('/editar/<int:id>')
 def editar(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        
         return redirect('/login?proxima=editar')
+    
     if 'usuario_logado' in session:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
         print(usuario)
     serie = serie_dao.busca_por_id(id)
     lista = estudio_dao.listar_estudio()
     lista_genero = genero_dao.listar_genero()
+    
     return render_template('editar.html', titulo='Editando uma serie', serie=serie, capa_serie=f'capa_serie{id}.jpg', usuario=usuario, studios=lista, generos=lista_genero)
 
 
 @app.route('/editar_filme/<int:id>')
 def editar_filme(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        
         return redirect('/login?proxima=editar_filme')
+    
     filme = filme_dao.busca_filme_por_id(id)
     lista = estudio_dao.listar_estudio()
     lista_genero = genero_dao.listar_genero()
+    
     return render_template('editar_filme.html', filme=filme, capa_filme=f'capa_filme{id}.jpg', studios=lista, generos=lista_genero)
 
 
@@ -287,32 +309,40 @@ def serie_perfil():
 @app.route('/deletar/<int:id>')
 def deletar(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        
         return redirect('/login?proxima=index')
+    
     lista_serie_dao.desfavorita_serie_all(id)
     serie_dao.deletar(id)
     arquivo = f'capa_serie{id}.jpg'
     os.remove(os.path.join(app.config['UPLOAD_PATH'], arquivo))
+    
     return redirect(url_for('tabela'))
 
 
 @app.route('/deletar_filme/<int:id>')
 def deletar_filme(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
+       
         return redirect('/login?proxima=index')
+    
     filme_dao.deletar_filme(id)
     arquivo = f'capa_filme{id}.jpg'
     os.remove(os.path.join(app.config['UPLOAD_PATH'], arquivo))
+    
     return redirect(url_for('tabela_filmes'))
 
 
 # Apagar Depois
 @app.route('/extendido')
 def extendido():
+    
     return render_template('extendido.html')
 
 
 @app.route('/teste')
 def teste():
+    
     return render_template('testeteste.html')
 
 
@@ -322,13 +352,16 @@ def serie_info(id):
     serie = serie_dao.busca_por_id(id)
     if session['usuario_logado']:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        
         return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{id}.jpg', usuario=usuario)
+    
     return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{id}.jpg')
 
 
 @app.route('/filme_info/<int:id>')
 def filme_info(id):
     filme = filme_dao.busca_filme_por_id(id)
+    
     return render_template('filme_info.html', filme=filme, capa_filme=f'capa_filme{id}.jpg')
 
 
@@ -338,7 +371,9 @@ def tabela():
     lista = serie_dao.listar()
     if session['usuario_logado']:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        
         return render_template('tabela_serie.html', series=lista, usuario=usuario)
+    
     return render_template('tabela_serie.html', series=lista)
 
 
@@ -347,12 +382,15 @@ def tabela_filmes():
     lista = filme_dao.listar_filmes()
     if session['usuario_logado']:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        
         return render_template('tabela_filmes.html', filmes=lista, usuario=usuario)
+    
     return render_template('tabela_filmes.html', filmes=lista)
 
 
 @app.route('/uploads/<nome_arquivo>')
 def imagem(nome_arquivo):
+    
     return send_from_directory('uploads', nome_arquivo)
 
 

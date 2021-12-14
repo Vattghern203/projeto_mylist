@@ -84,7 +84,7 @@
                 <h2 class="section-title">minha lista</h2>
                 {% for minha_serie in minhas_series %}
                     {% if minha_serie._usuario_id == usuario._id %}
-                    <a href="{{ url_for('serie_info', id=minha_serie._serie_id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(minha_serie._serie_id))}}" alt=""></a>
+                    <a href="{{ url_for('serie_info', id=minha_serie._serie_id)}}"><img class="cover-form thumbnail" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(minha_serie._serie_id))}}" alt=""></a>
                     {% endif %}
                 {% endfor %}
             </article>
@@ -96,7 +96,7 @@
             <article class="cover-container">
                 <h2 class="section-title">séries</h2>
                 {% for serie in series %}
-                <a href="{{ url_for('serie_info', id=serie._id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}" alt="{{serie._nome}}"></a>
+                <a href="{{ url_for('serie_info', id=serie._id)}}"><img class="cover-form thumbnail" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(serie._id))}}" alt="{{serie._nome}}"></a>
                 {% endfor %}
             </article>
         </section>
@@ -105,7 +105,7 @@
             <article>
                 <h2 class="section-title">filmes</h2>
                 {% for filme in filmes %}
-                <a id="{{ filme._id }}" href="{{ url_for('filme_info', id=filme._id)}}"><img class="cover-form" src="{{url_for('imagem', nome_arquivo='capa_filme{}.jpg'.format(filme._id))}}" alt="{{filme._nome}}"></a>
+                <a id="{{ filme._id }}" href="{{ url_for('filme_info', id=filme._id)}}"><img class="cover-form thumbnail" src="{{url_for('imagem', nome_arquivo='capa_filme{}.jpg'.format(filme._id))}}" alt="{{filme._nome}}"></a>
                 {% endfor %}
             </article>
         </section>
@@ -119,6 +119,7 @@
         _blank"><img class="social-media" src="{{url_for('static', filename='discord_logo.png')}}"   alt="Discord Link"></a>
         <a href="https://steamcommunity.com/id/Vatt_Ghern/" target="_blank"><img class="social-media" src="{{url_for('static', filename='steam_logo.png')}}" alt="Steam Link"></a>
         <a href="https://twitter.com/Vattguern" target="_blank"><img class="social-media" src="{{url_for('static', filename='twitter_logo.png')}}" alt="Twitter Link"></a>
+        <a href="https://github.com/Vattghern203" target="_blank"><img class="social-media" src="{{url_for('static', filename='github_logo.png')}}" alt="Github"></a>
         <abbr title="(35)998163510"><img class="social-media" src="{{url_for('static', filename='whatsapp_logo.png')}}" alt="What'sApp Link"></abbr>
     </footer>
     {% endblock %}

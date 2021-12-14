@@ -225,6 +225,14 @@ article > a > img {
     margin: 7px 0px;
 }
 
+.thumbnail {
+    transition: transform .2s;
+}
+
+.thumbnail:hover {
+    transform: scale(1.1);
+}
+
 footer {
     background-color: #161616;
     text-align: center;

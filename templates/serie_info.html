@@ -198,7 +198,7 @@
             </div>
         </div>
 
-        {% if usuario: %}
+    {% if usuario: %}
 
         <div class="user-data">
             <label for="user-temps">Temporada:</label>
@@ -214,14 +214,18 @@
             <textarea class="comentario" name="comentario" id="comentario" cols="60" rows="20" placeholder="Write a comment here...">{{usuario._id}}</textarea>
         </div>
 
+
         <form action="{{url_for('add_serie')}}" method="post">
             <input type="hidden" name="usuario_id" id="usuario_id" value={{usuario._id}}>
             <input type="hidden" name="serie_id" id="serie_id" value={{serie._id}}>
             <a href="{{ url_for('serie_info', id=serie._id )}}"><button class="btn_add_fav" type="submit">favoritar</button></a>
             <a class="btn_remove_fav" href="{{ url_for('desfavorita_serie', usuario_id=usuario._id, serie_id=serie._id) }}">desfavoritar</a>
+
         </form>
 
-        {% endif %}
+
+
+    {% endif %}
     </div>
 </main>
 
