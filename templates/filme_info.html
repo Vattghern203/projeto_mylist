@@ -201,7 +201,7 @@
                 <h4 class="status-content">Ano: {{filme._ano}}</h4>
                 <h4 class="status-content">Gênero: {{filme._genero_id}}</h4>
                 <h4 class="status-content">Rank: #666</h4>
-                <h4 class="status-content">Estúdio: {{filme._estudio_id}} Kyoto Animation Super 2</h4>
+                <h4 class="status-content">Estúdio: {{filme._estudio_id}}</h4>
             </div>
         </div>
 
@@ -220,16 +220,27 @@
                     <option value="1">(1) Apavorante</option>
                 </select>
             </div>
-            <div class="user-btn-fav">
-                <a href="#"><img class="favorite-btn" src="{{url_for('static', filename='empty-heart.png')}}" alt=""></a>
-            </div>
-            <div class="user-btn-edit">
-                <a class="info-link" href="{{ url_for('editar_filme', id=filme._id)}}">editar</a>
-            </div>
         </div>
     </div>
 
-    
+    {% if usuario: %}   
+
+        {% if favorito: %}
+
+        <a class="btn_remove_fav" href="{{ url_for('desfavorita_filme', filme_id=filme._id, usuario_id=usuario._id)}}"><img src="{{url_for('static', filename='fulfill-heart.png')}}" alt=""></a>
+
+        {% else %}
+
+        <form action="{{url_for('add_filme')}}" method="post">
+            <input type="hidden" name="usuario_id" id="usuario_id" value={{usuario._id}}>
+            <input type="hidden" name="filme_id" id="filme_id" value={{filme._id}}>
+            <a href="{{ url_for('filme_info', id=filme._id )}}"><button class="btn_add_fav" type="submit"><img class="add_fav_img" src="{{url_for('static', filename='empty-heart.png')}}" alt=""></button></a>
+        </form>
+
+        {% endif %}
+
+    {% endif %}
+
 </main>
 
 {% endblock %}

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, url_for, request, session, send_from_directory, redirect
 
-from dao import UsuarioDao, FilmeDao, SerieDao, StudioDao, GeneroDao, SerieListDao
+from dao import UsuarioDao, FilmeDao, SerieDao, StudioDao, GeneroDao, SerieListDao, MovieListDao
 
 from flask_mysqldb import MySQL
 
@@ -27,6 +27,7 @@ filme_dao = FilmeDao(db)
 estudio_dao = StudioDao(db)
 genero_dao = GeneroDao(db)
 lista_serie_dao = SerieListDao(db)
+lista_filme_dao = MovieListDao(db)
 
 
 # paginas
@@ -41,10 +42,11 @@ def index():
     if session:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
         minhas_series = lista_serie_dao.listar_minhas_series()
+        meus_filmes = lista_filme_dao.listar_meus_filmes()
         lista = serie_dao.listar()
         listaf = filme_dao.listar_filmes()
         
-        return render_template('index.html', series=lista, filmes=listaf, usuario=usuario, minhas_series=minhas_series)
+        return render_template('index.html', series=lista, filmes=listaf, usuario=usuario, minhas_series=minhas_series, meus_filmes=meus_filmes)
 
     else:
         lista = serie_dao.listar()
@@ -326,6 +328,7 @@ def deletar_filme(id):
        
         return redirect('/login?proxima=index')
     
+    lista_filme_dao.desfavorita_filme_all(id)
     filme_dao.deletar_filme(id)
     arquivo = f'capa_filme{id}.jpg'
     os.remove(os.path.join(app.config['UPLOAD_PATH'], arquivo))
@@ -350,17 +353,34 @@ def teste():
 @app.route('/serie_info/<int:id>')
 def serie_info(id):
     serie = serie_dao.busca_por_id(id)
-    if session['usuario_logado']:
+    if session:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        favorito = lista_serie_dao.busca_favorito_por_id(session['usuario_logado'], id)
+        if favorito != None:
+           
+            return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{id}.jpg', usuario=usuario, favorito=favorito)
         
-        return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{id}.jpg', usuario=usuario)
-    
+        else:
+        
+            return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{id}.jpg', usuario=usuario)
+        
     return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{id}.jpg')
+        
 
 
 @app.route('/filme_info/<int:id>')
 def filme_info(id):
     filme = filme_dao.busca_filme_por_id(id)
+    if session:
+        usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+        favorito = lista_filme_dao.busca_filme_favorito_por_id(session['usuario_logado'], id)
+        if favorito != None:
+        
+            return render_template('filme_info.html', filme=filme, capa_filme=f'capa_filme{id}.jpg', usuario=usuario, favorito=favorito)
+        
+        else:
+        
+            return render_template('filme_info.html', filme=filme, capa_filme=f'capa_filme{id}.jpg', usuario=usuario)
     
     return render_template('filme_info.html', filme=filme, capa_filme=f'capa_filme{id}.jpg')
 
@@ -369,7 +389,7 @@ def filme_info(id):
 @app.route('/tabela')
 def tabela():
     lista = serie_dao.listar()
-    if session['usuario_logado']:
+    if session:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
         
         return render_template('tabela_serie.html', series=lista, usuario=usuario)
@@ -380,7 +400,7 @@ def tabela():
 @app.route('/tabela_filmes')
 def tabela_filmes():
     lista = filme_dao.listar_filmes()
-    if session['usuario_logado']:
+    if session:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
         
         return render_template('tabela_filmes.html', filmes=lista, usuario=usuario)
@@ -405,7 +425,20 @@ def add_serie():
     serie = serie_dao.busca_por_id(serie_id)
     usuario = usuario_dao.busca_por_id(session['usuario_logado'])
 
-    return render_template('serie_info.html', serie=serie, usuario=usuario, capa_serie=f'capa_serie{serie_id}.jpg')
+    return redirect(url_for('index'))
+
+@app.route('/add_filme', methods=['POST', ])
+def add_filme():
+    usuario_id = request.form['usuario_id']
+    filme_id = request.form['filme_id']
+
+    lista_filme = MovieList(usuario_id, filme_id)
+    
+    lista_filme_dao.add_filme(lista_filme)
+    filme = filme_dao.busca_filme_por_id(filme_id)
+    usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+    
+    return redirect(url_for('index'))
 
 
 @app.route('/desfavorita_serie/<int:usuario_id>/<int:serie_id>')
@@ -413,8 +446,17 @@ def desfavorita_serie(usuario_id, serie_id):
     lista_serie_dao.desfavorita_serie_lista(usuario_id, serie_id)
     usuario = usuario_dao.busca_por_id(session['usuario_logado'])
     serie = serie_dao.busca_por_id(serie_id)
+    
     return render_template('serie_info.html', serie=serie, capa_serie=f'capa_serie{serie_id}.jpg', usuario=usuario)
 
+
+@app.route('/desfavorita_filme/<int:usuario_id>/<int:filme_id>')
+def desfavorita_filme(usuario_id, filme_id):
+    lista_filme_dao.desfavorita_filme_lista(usuario_id, filme_id)
+    usuario = usuario_dao.busca_por_id(session['usuario_logado'])
+    filme = filme_dao.busca_filme_por_id(filme_id)
+    
+    return render_template('filme_info.html', filme=filme, capa_filme=f'capa_filme{filme_id}.jpg', usuario=usuario)
     
 # Main
 if __name__ == '__main__':

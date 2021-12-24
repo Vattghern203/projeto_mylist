@@ -7,6 +7,7 @@ SQL_CRIA_STUDIO = 'INSERT into STUDIO (NOME) values (%s)'
 SQL_CRIA_GENERO = 'INSERT into GENERO (NOME) values (%s)'
 SQL_CRIA_USUARIO = 'INSERT into USUARIO (NOME, EMAIL, SENHA) values (%s, %s, %s)'
 SQL_ADD_LIST_SERIE = 'INSERT into SERIE_LIST (USUARIO_ID, SERIE_ID) values (%s, %s)'
+SQL_ADD_LIST_MOVIE = 'INSERT into MOVIE_LIST (USUARIO_ID, MOVIE_ID) values (%s, %s)'
 
 # Atualiza
 SQL_ATUALIZA_SERIE = 'UPDATE SERIE SET NOME = %s, EPS = %s, TEMPS = %s,  SINOPSE = %s, NOTA = %s, ANO = %s, STUDIO_ID = %s, GENERO_ID = %s where ID = %s'
@@ -23,7 +24,9 @@ SQL_BUSCA_STUDIO = 'SELECT ID, NOME from STUDIO'
 SQL_BUSCA_GENERO = 'SELECT ID, NOME from GENERO'
 # Teste
 SQL_BUSCA_MINHAS_SERIES = 'SELECT SERIE_ID from SERIE_LIST where USUARIO_ID = %s'
-SQL_BUSCA_FAVORITO = 'SELECT USUARIO_ID, SERIE_ID FROM SERIE_LIST Where USUARIO_ID = %s and SERIE_ID = %s'
+SQL_BUSCA_MEUS_FILMES = 'SELECT MOVIE_ID from MOVIE_LIST where USUARIO_ID = %s'
+SQL_BUSCA_FAVORITO = 'SELECT USUARIO_ID, SERIE_ID FROM SERIE_LIST where USUARIO_ID = %s and SERIE_ID = %s'
+SQL_BUSCA_FAVORITO_FILME = 'SELECT USUARIO_ID, MOVIE_ID FROM MOVIE_LIST where USUARIO_ID = %s and MOVIE_ID = %s'
 
 
 SQL_STUDIO_POR_ID = 'SELECT ID, NOME from STUDIO where ID = %s'
@@ -36,13 +39,16 @@ SQL_USUARIO_POR_ID = 'SELECT ID, NOME, EMAIL, SENHA from USUARIO where ID = %s'
 # Delete
 # Esse primeiro SQL serve para remover todas as chaves ligadas com a obra que estão no serie.list. Repetir com filmes
 SQL_DESFAVORITA_SERIE_ALL = 'delete from SERIE_LIST where SERIE_LIST.SERIE_ID = %s'
+SQL_DESFAVORITA_FILME_ALL = 'delete from MOVIE_LIST where MOVIE_LIST.MOVIE_ID = %s'
 SQL_DELETA_SERIE = 'delete from SERIE where ID = %s'
 SQL_DELETA_FILME = 'delete from MOVIE where ID = %s'
 SQL_DELETA_GENERO = 'delete from GENERO where ID = %s'
 SQL_DELETA_STUDIO = 'delete from STUDIO where ID = %s'
 
 SQL_REMOVE_LISTA_SERIE = 'delete from SERIE_LIST where USUARIO_ID = %s and SERIE_ID = %s'
+SQL_REMOVE_LISTA_FILME = 'delete from MOVIE_LIST where USUARIO_ID = %s and MOVIE_ID = %s'
 SQL_MINHAS_SERIES_POR_ID = 'SELECT USUARIO_ID, SERIE_ID from SERIE_LIST'
+SQL_MEUS_FILMES_POR_ID = 'SELECT USUARIO_ID, MOVIE_ID from MOVIE_LIST'
 
 class SerieDao:
     def __init__(self, db):
@@ -111,8 +117,13 @@ def traduz_minhas_series(minhas_series):
     def cria_minhas_series_com_tupla(tupla):
         return SerieList(tupla[0], tupla[1])
     return list(map(cria_minhas_series_com_tupla, minhas_series))
+
+
+def traduz_meus_filmes(meus_filmes):
+    def cria_meus_filmes_com_tupla(tupla):
+        return MovieList(tupla[0], tupla[1])
+    return list(map(cria_meus_filmes_com_tupla, meus_filmes))
     
-       
 
 class FilmeDao:
     def __init__(self, db):
@@ -179,16 +190,21 @@ class UsuarioDao:
         
     def busca_por_nome(self, nome):
         cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_USUARIO_POR_NOME, (nome,))
-        dados = cursor.fetchone()
-        usuario = traduz_usuario(dados) if dados else None
-        return usuario
+        if cursor.execute(SQL_USUARIO_POR_NOME, (nome,)):
+            dados = cursor.fetchone()
+            usuario = traduz_usuario(dados) if dados else None
+            return usuario
+        else:
+            return None
+    
     
     def busca_por_id(self, id):
         cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_USUARIO_POR_ID, (id,))
-        tupla = cursor.fetchone()
-        return Usuario(tupla[1], tupla[2], tupla[3], id=tupla[0])
+        if cursor.execute(SQL_USUARIO_POR_ID, (id,)):
+            tupla = cursor.fetchone()
+            return Usuario(tupla[1], tupla[2], tupla[3], id=tupla[0])
+        else:
+            return None
     
     def listar_usuarios(self):
         cursor = self.__db.connection.cursor()
@@ -241,6 +257,9 @@ class SerieListDao:
     def add_serie(self, lista_serie):
         cursor = self.__db.connection.cursor()
         
+        if cursor.execute(SQL_BUSCA_FAVORITO, (lista_serie._usuario_id, lista_serie._serie_id)):
+            return lista_serie
+        
         cursor.execute(SQL_ADD_LIST_SERIE, (lista_serie._usuario_id,lista_serie._serie_id))
         cursor._id = cursor.lastrowid
 
@@ -263,7 +282,50 @@ class SerieListDao:
         
     def busca_favorito_por_id(self, usuario_id, serie_id):
         cursor = self.__db.connection.cursor()
-        cursor.execute(SQL_BUSCA_FAVORITO, (usuario_id, serie_id))
-        tupla = cursor.fetchone()
-        return SerieList(tupla[0], tupla[1])
+        if cursor.execute(SQL_BUSCA_FAVORITO, (usuario_id, serie_id)):
+            tupla = cursor.fetchone()
+            return SerieList(tupla[0], tupla[1])
+        else:
+            return None
+    
+    
+class MovieListDao:
+    def __init__(self, db):
+        self.__db = db
+        
+    def add_filme(self, lista_filme):
+        cursor = self.__db.connection.cursor()
+        
+        if cursor.execute(SQL_BUSCA_FAVORITO_FILME, (lista_filme._usuario_id, lista_filme._filme_id)):
+            return lista_filme
+        
+        cursor.execute(SQL_ADD_LIST_MOVIE, (lista_filme._usuario_id,lista_filme._filme_id))
+        cursor._id = cursor.lastrowid
+
+        self.__db.connection.commit()
+        return lista_filme
+    
+    def listar_meus_filmes(self):
+        cursor = self.__db.connection.cursor()
+        cursor.execute(SQL_MEUS_FILMES_POR_ID)
+        meus_filmes = traduz_meus_filmes(cursor.fetchall())
+        return meus_filmes
+    
+    def desfavorita_filme_all(self, id):
+        self.__db.connection.cursor().execute(SQL_DESFAVORITA_FILME_ALL, (id,))
+        self.__db.connection.commit()
+        
+    def desfavorita_filme_lista(self, usuario_id, filme_id):
+        self.__db.connection.cursor().execute(SQL_REMOVE_LISTA_FILME, (usuario_id, filme_id))
+        self.__db.connection.commit()
+        
+    def busca_filme_favorito_por_id(self, usuario_id, filme_id):
+        cursor = self.__db.connection.cursor()
+        if cursor.execute(SQL_BUSCA_FAVORITO_FILME, (usuario_id, filme_id)):
+            tupla = cursor.fetchone()
+            return MovieList(tupla[0], tupla[1])
+        else:
+            return None
+        
+    
     

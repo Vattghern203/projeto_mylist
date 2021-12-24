@@ -214,16 +214,19 @@
             <textarea class="comentario" name="comentario" id="comentario" cols="60" rows="20" placeholder="Write a comment here...">{{usuario._id}}</textarea>
         </div>
 
+        {% if favorito: %}
+
+        <a class="btn_remove_fav" href="{{ url_for('desfavorita_serie', usuario_id=usuario._id, serie_id=serie._id) }}"><img src="{{url_for('static', filename='fulfill-heart.png')}}" alt=""></a>
+
+        {% else %}
 
         <form action="{{url_for('add_serie')}}" method="post">
             <input type="hidden" name="usuario_id" id="usuario_id" value={{usuario._id}}>
             <input type="hidden" name="serie_id" id="serie_id" value={{serie._id}}>
-            <a href="{{ url_for('serie_info', id=serie._id )}}"><button class="btn_add_fav" type="submit">favoritar</button></a>
-            <a class="btn_remove_fav" href="{{ url_for('desfavorita_serie', usuario_id=usuario._id, serie_id=serie._id) }}">desfavoritar</a>
-
+            <a href="{{ url_for('serie_info', id=serie._id )}}"><button class="btn_add_fav" type="submit"><img class="add_fav_img" src="{{url_for('static', filename='empty-heart.png')}}" alt=""></button></a>
         </form>
 
-
+        {% endif %}
 
     {% endif %}
     </div>

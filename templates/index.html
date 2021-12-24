@@ -84,9 +84,20 @@
                 <h2 class="section-title">minha lista</h2>
                 {% for minha_serie in minhas_series %}
                     {% if minha_serie._usuario_id == usuario._id %}
+
                     <a href="{{ url_for('serie_info', id=minha_serie._serie_id)}}"><img class="cover-form thumbnail" src="{{url_for('imagem', nome_arquivo='capa_serie{}.jpg'.format(minha_serie._serie_id))}}" alt=""></a>
+                    
                     {% endif %}
                 {% endfor %}
+           
+                {% for meu_filme in meus_filmes %}
+                    {% if meu_filme._usuario_id == usuario._id %}
+                    
+                    <a href="{{url_for('filme_info', id=meu_filme._filme_id)}}"><img class="cover-form thumbnail" src="{{url_for('imagem', nome_arquivo='capa_filme{}.jpg'.format(meu_filme._filme_id))}}" alt=""></a>
+
+                    {% endif %}
+                {% endfor %}
+
             </article>
         </section>
 
