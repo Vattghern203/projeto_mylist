@@ -12,18 +12,26 @@ Fonte: White Smoke;
 Extra Color Gray: #1A1C1D;
 */
 
+:root {
+    --logiblue: #00A2ED;
+    --gray-bg: #2A2A2A;
+    --dark-gray-bg: #222222;
+    --darker-gray-bg: #161616;
+    --font-color-default: whitesmoke;
+    --font-family: 'Source Sans Regular', 'Roboto', sans-serif;
+}
+
 body {
-    background-color: #2A2A2A;
+    background-color: var(--gray-bg);
     margin: 0;
-    font-family: 'Source Sans Regular', sans-serif;
-    color: whitesmoke;
+    font-family: var(--font-family);
+    color: var(--font-color-default);
 }
 
 header {
-    background-color: #222222;
+    background-color: var(--dark-gray-bg);
     margin: 0;
     text-align: left;
-    
 }
 
 .logo {
@@ -45,8 +53,8 @@ nav {
 }
 
 .search-bar {
-    background-color: #222222;
-    color: whitesmoke;
+    background-color: var(--dark-gray-bg);
+    color: var(--font-color-default);
     border-radius: 3px;
     margin-right: 30px;
     overflow: hidden;
@@ -59,17 +67,17 @@ nav {
 }
 
 #login_button:visited {
-    color: #00A2ED;
+    color: var(--logiblue);
 }
 
 #login_button:hover {
-    color: whitesmoke;
+    color: var(--font-color-default);
 }
 
 .top_nav {
     margin: 0;
     overflow: hidden;
-    background-color: #161616;
+    background-color: var(--darker-gray-bg);
     margin-bottom: 5px;
 }
 
@@ -90,18 +98,18 @@ nav {
     border-top-right-radius: 5px;
     border: none;
     outline: none;
-    color: #00A2ED;
+    color: var(--logiblue);
     background-color: inherit;
     margin: 0;
 }
 
 .dropdown .dropbtn:visited {
-    color: #00A2ED;
+    color: var(--logiblue);
 }
 
 .navbar a:hover, .dropdown:hover .dropbtn {
-    color: whitesmoke;
-    background-color: #222222;
+    color: var(--font-color-default);
+    background-color: var(--dark-gray-bg);
 }
 
 .dropdown-content {
@@ -109,7 +117,7 @@ nav {
     border-bottom-right-radius: 5px;
     display: none;
     position: absolute;
-    background-color: #222222;
+    background-color: var(--dark-gray-bg);
     min-width: 95px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -125,7 +133,7 @@ nav {
 }
 
 .dropdown-content a:hover {
-    color: whitesmoke;
+    color: var(--font-color-default);
 }
 
 .dropdown:hover .dropdown-content {
@@ -133,11 +141,11 @@ nav {
 }
 
 .dropdown-content > a{
-    color: #00A2ED;
+    color: var(--logiblue);
 }
 
 .dropdown-content:visited {
-    color: #00A2ED;
+    color: var(--logiblue);
 }
 
 .login-dropdown {
@@ -182,14 +190,14 @@ nav {
 }
 
 nav > a:hover {
-    color: whitesmoke;
+    color: var(--font-color-default);
 }
 
 main {
-    background-color: #222222;
+    background-color: var(--dark-gray-bg);
     text-align: center;
     padding: 10px 12px;
-    margin: 0px;
+    margin: 0;
 }
 
 body {
@@ -197,7 +205,7 @@ body {
 }
 
 a:visited {
-    color: #00A2ED;
+    color: var(--logiblue);
 }
 
 
@@ -222,7 +230,7 @@ article > a > img {
 .section-title {
     text-align: left;
     border-radius: 8px;
-    background-color: #161616;
+    background-color: var(--darker-gray-bg);
     padding: 10px 12px;
     margin: 7px 0px;
 }
@@ -236,7 +244,7 @@ article > a > img {
 }
 
 footer {
-    background-color: #161616;
+    background-color: var(--darker-gray-bg);
     text-align: center;
     margin: 0;
     padding: 20px 30px;
@@ -258,19 +266,19 @@ footer {
 }
 
 .creditos > a:hover {
-    color: whitesmoke;
+    color: var(--font-color-default);
 }
 
 .creditos:hover {
-    color: whitesmoke;
+    color: var(--font-color-default);
 }
 
 .creditos:visited {
-    color: #00A2ED;
+    color: var(--logiblue);
 }
 
 a:hover {
-    color: whitesmoke;
+    color: var(--font-color-default);
 }
 
 button {
@@ -295,7 +303,7 @@ input {
 textarea {
     resize: none;
     border-radius: 5px;
-    font-family: 'Source Sans Regular', sans-serif;
+    font-family: var(--font-family)
 }
 
 .cover-form {
@@ -349,13 +357,13 @@ textarea {
 }
 
 .comentario {
-    background-color: #2A2A2A;
-    color: whitesmoke;
+    background-color: var(--gray-bg);
+    color: var(--font-color-default);
     
 }
 
 .comentario:hover{
-    background-color: whitesmoke;
+    background-color: var(--font-color-default);
     color: black;
 }
 
@@ -373,7 +381,7 @@ textarea {
 
 
 .btn_remove_fav:visited {
-    color: whitesmoke;
+    color: var(--font-color-default);
 }
 
 .btn_remove_fav {

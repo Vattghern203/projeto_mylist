@@ -187,7 +187,7 @@
             <h2 class="title-serie">{{filme._nome}}</h2>
         </div>
         <div class="cover">
-            <img class="cover-form" src="{{url_for('imagem', nome_arquivo=capa_filme)}}" alt="">
+            <img class="cover-form thumbnail" src="{{url_for('imagem', nome_arquivo=capa_filme)}}" alt="">
         </div>
         <div class="sinopse">
             <section>
@@ -199,9 +199,8 @@
                 <h4 class="status-content">Nota: {{filme._nota}}</h4>
                 <h4 class="status-content">Duração: {{filme._duracao}}</h4>
                 <h4 class="status-content">Ano: {{filme._ano}}</h4>
-                <h4 class="status-content">Gênero: {{filme._genero_id}}</h4>
-                <h4 class="status-content">Rank: #666</h4>
-                <h4 class="status-content">Estúdio: {{filme._estudio_id}}</h4>
+                <h4 class="status-content">Gênero: {{filme._genero}}</h4>
+                <h4 class="status-content">Estúdio: {{filme._estudio}}</h4>
             </div>
         </div>
 
