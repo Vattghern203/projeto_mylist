@@ -19,6 +19,8 @@ Extra Color Gray: #1A1C1D;
     --darker-gray-bg: #161616;
     --font-color-default: whitesmoke;
     --font-family: 'Source Sans Regular', 'Roboto', sans-serif;
+    --thumb-width: 200px;
+    --thumb-height: 283px;
 }
 
 body {
@@ -161,10 +163,6 @@ nav {
     font-size: 17px;
 }
 
-::-webkit-scrollbar-corner {
-    background-color: #302f2f;
-}
-
 @media screen and (max-width: 600px) {
     .topnav a, .topnav input[type=text] {
       float: none;
@@ -208,22 +206,21 @@ a:visited {
     color: var(--logiblue);
 }
 
-
 .index-section {
     margin: 0;
 }
 
 article > img {
     display: inline-block;
-    width: 200px;
-    height: 283px;
+    width: var(--thumb-width);
+    height: var(--thumb-height);
     border-radius: 3px;
 }
 
 article > a > img {
     display: inline-block;
-    width: 200px;
-    height: 283px;
+    width: var(--thumb-width);
+    height:var(--thumb-height);
     border-radius: 3px;
 }
 
@@ -308,14 +305,14 @@ textarea {
 
 .cover-form {
     border-radius: 5px;
-    width: 200px;
-    height: 283px;
+    width:var(--thumb-width);
+    height: var(--thumb-height);
 }
 
 .index-cover {
     border-radius: 5px;
-    width: 200px;
-    height: 283px;
+    width: var(--thumb-width);
+    height: var(--thumb-height);
 }
 
 .msg-ul {

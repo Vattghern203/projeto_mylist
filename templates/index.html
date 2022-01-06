@@ -125,7 +125,7 @@
 
     {% block footer %}
     <footer>
-        <p class="creditos">developed by <a href="https://twitter.com/Vattguern">Otávio Augusto</a></p>
+        <p class="creditos">developed by <a href="https://twitter.com/Vattguern" target="_blank">Otávio Augusto</a></p>
         <a href="https://discord.com/users/389762685992042496" target="
         _blank"><img class="social-media" src="{{url_for('static', filename='discord_logo.png')}}"   alt="Discord Link"></a>
         <a href="https://steamcommunity.com/id/Vatt_Ghern/" target="_blank"><img class="social-media" src="{{url_for('static', filename='steam_logo.png')}}" alt="Steam Link"></a>
@@ -138,6 +138,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{url_for('static', filename='jquery-3.6.0.js')}}"></script>
     <script src="{{url_for('static', filename='japp.js')}}"></script>
+    <script src="{{url_for('static', filename='search.js')}}"></script>
 </body>
 </html>
 

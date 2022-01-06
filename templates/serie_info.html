@@ -7,6 +7,23 @@
     box-sizing: border-box;
 }
 
+:root {
+    --logiblue: #00A2ED;
+    --gray-bg: #2A2A2A;
+    --dark-gray-bg: #222222;
+    --darker-gray-bg: #161616;
+    --font-color-default: whitesmoke;
+    --font-family: 'Source Sans Regular', 'Roboto', sans-serif;
+    --thumb-width: 200px;
+    --thumb-height: 283px;
+
+    /* LIGHT MODE */
+    --white-bg: white;
+    --dark-white-bg: rgb(231, 231, 231);
+    --darker-white-bg: rgb(221, 221, 221);
+    --font-color-light: black;
+}
+
 .logo {
     box-sizing: unset;
 }
@@ -21,7 +38,7 @@
 
 .content {
     display: block;
-    background-color:#222222;
+    background-color:var(--dark-gray-bg);
     margin: auto;
     border-radius: 10px;
     padding: 10px 12px;
@@ -29,7 +46,7 @@
 }
 
 .tittle {
-    background-color: #161616;
+    background-color: var(--darker-gray-bg);
     text-align: left;
     width: auto;
     margin-bottom: 10px;
@@ -44,9 +61,9 @@
 
 .cover {
     display: inline-block;
-    background-color: #161616;
-    width: 200px;
-    height: 283px;
+    background-color: var(--darker-gray-bg);
+    width: var(--thumb-width);
+    height: var(--thumb-height);
     border-radius: 5px;
     margin-top: 10px;
     margin: 8px;
@@ -67,10 +84,10 @@
 
 .cover {
     display: inline-block;
-    background-color: #161616;
+    background-color: var(--darker-gray-bg);
     object-position: cover;
-    width: 195px;
-    height: 283px;
+    width: var(--thumb-width);
+    height: var(--thumb-height);
     border-radius: 5px;
     margin-top: 10px;
     margin: 8px;
@@ -78,13 +95,13 @@
 }
 
 .cover > img {
-    width: 195px;
-    height: 283px;
+    width: var(--thumb-width);
+    height: var(--thumb-height);
 
 }
 
 .content-info {
-    background-color: #161616;
+    background-color: var(--darker-gray-bg);
     text-align: left;
     margin: auto;
     border-radius: 5px;
@@ -118,7 +135,7 @@
     margin-top: 25px;
     padding: 10px 12px;
     border-radius: 5px;
-    background-color: #161616;
+    background-color: var(--darker-gray-bg);
     width: 80%;
     height: 10%;
 }
@@ -168,7 +185,7 @@
     .sinopse {
         text-align: center;
         height: 200px;
-        overflow: scroll;
+        overflow: -moz-hidden-unscrollable;
     }
 }
 
