@@ -16,14 +16,14 @@
                 <input class="form_create" type="text" placeholder="Duração" name="duracao" id="duracao"><br><br>
                 <input class="form_create" type="text" placeholder="Nota" name="nota-f" id="nota-f"><br><br>
                 <input class="form_create" type="number" placeholder="Ano" name="ano-f" id="ano-f"><br><br>
-                <label>Gênero <br><br></label>
                 <select aria-placeholder="Gênero" class="form_select" name="genero-f" id="genero">
+                    <option value="" selected disabled>Gênero</option>
                 {% for genero in generos %}
                     <option value="{{genero._id}}">{{genero._nome}}</option>
                 {% endfor %}
                 </select> <br><br>
-                <label> Estúdio <br><br> </label>
                 <select class="form_select" name="studio-f" id="studio">
+                    <option value="" selected disabled>Estúdio</option>
                 {% for studio in studios %}
                     <option value="{{studio._id}}">{{studio._nome}}</option>
                 {% endfor %}

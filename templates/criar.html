@@ -17,14 +17,14 @@
                 <input class="form_create" type="number" placeholder="Temporadas" name="temps" id="temps"><br><br>
                 <input class="form_create" type="text" placeholder="Nota" name="nota" id="nota"><br><br>
                 <input class="form_create" type="number" placeholder="Ano" name="ano" id="ano"><br><br>
-                <label>Gênero <br><br></label>
                 <select aria-placeholder="Gênero" class="form_select" name="genero" id="genero">
+                    <option value="" selected disabled>Gênero</option>
                 {% for genero in generos %}
                     <option value="{{genero._id}}">{{genero._nome}}</option>
                 {% endfor %}
                 </select> <br><br>
-                <label> Estúdio <br><br> </label>
                 <select class="form_select" name="studio" id="studio">
+                    <option value="" disabled selected>Estúdio</option>
                 {% for studio in studios %}
                     <option value="{{studio._id}}">{{studio._nome}}</option>
                 {% endfor %}

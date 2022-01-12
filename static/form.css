@@ -142,3 +142,7 @@ input {
 .btn_confirm:hover {
     background-color: #0283be;
 }
+
+select {
+    padding: 7px;
+}
