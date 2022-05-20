@@ -4,12 +4,19 @@ from dao import UsuarioDao, FilmeDao, SerieDao, StudioDao, GeneroDao, SerieListD
 
 from flask_mysqldb import MySQL
 
+from flask_login import LoginManager, login_manager
+
 from models import Serie, Filme, Usuario, Studio, Genero, SerieList, MovieList
 
 import os
 
+# Gerenciamento ---------------------------------------------
+
 app = Flask(__name__)
 app.secret_key = 'Mylist'
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 app.config['UPLOAD_PATH'] = os.path.dirname(os.path.abspath(__file__))+'/uploads'
 app.config['MYSQL_HOST'] = '127.0.0.1'
@@ -20,7 +27,7 @@ app.config['MYSQL_PORT'] = 3306
 
 db = MySQL(app)
 
-# Variáveis Dao
+# Variáveis Dao ---------------------------------------------
 usuario_dao = UsuarioDao(db)
 serie_dao = SerieDao(db)
 filme_dao = FilmeDao(db)
@@ -30,7 +37,12 @@ lista_serie_dao = SerieListDao(db)
 lista_filme_dao = MovieListDao(db)
 
 
-# paginas
+# Páginas -----------------------------------------------------
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+
 @app.route('/')
 def index():
     if session == None:
