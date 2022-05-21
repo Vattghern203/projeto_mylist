@@ -1,10 +1,11 @@
+from functools import wraps
 from flask import Flask, render_template, flash, url_for, request, session, send_from_directory, redirect
 
 from dao import UsuarioDao, FilmeDao, SerieDao, StudioDao, GeneroDao, SerieListDao, MovieListDao
 
 from flask_mysqldb import MySQL
 
-from flask_login import LoginManager, login_manager
+from flask_login import LoginManager, login_manager, login_required, logout_user
 
 from models import Serie, Filme, Usuario, Studio, Genero, SerieList, MovieList
 
@@ -41,6 +42,18 @@ lista_filme_dao = MovieListDao(db)
 @login_manager.user_loader
 def load_user(user_id):
     return User.get(user_id)
+
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'usuario_logado' not in session or session['usuario_logado'] == None:
+            return f(*args, **kwargs)
+        
+        else:
+            flash("Você necessita de login para acessar essa página")
+            return redirect('/login')
+    return wrap
 
 
 @app.route('/')
@@ -83,7 +96,6 @@ def login():
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
     usuario = usuario_dao.busca_por_nome(request.form['usuario'])
-    print(usuario._id)
     if usuario:
         if usuario._senha == request.form['senha']:
             session['usuario_logado'] = usuario._id
@@ -102,9 +114,9 @@ def autenticar():
 
 
 @app.route('/logout')
+@login_required
 def logout():
-    session['usuario_logado'] = None
-    flash('Nenhum usuário logado')
+    logout_user()
     
     return redirect('/login')
 
@@ -183,6 +195,7 @@ def criar():
 
 
 @app.route('/criar_filme', methods=['POST', ])
+@login_required
 def criar_filme():
     nomef = request.form['nome-f']
     duracao = request.form['duracao']
@@ -217,6 +230,7 @@ def criar_conta():
 
 
 @app.route('/criar_estudio', methods=['POST', ])
+@login_required
 def criar_estudio():
     nomee = request.form['nome-e']
 
@@ -228,6 +242,7 @@ def criar_estudio():
 
 
 @app.route('/criar_genero', methods=['POST', ])
+@login_required
 def criar_genero():
     nomeg = request.form['nome']
 
@@ -240,9 +255,8 @@ def criar_genero():
 
 # Novo
 @app.route('/novo')
+@login_required
 def novo():
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect('/login?proxima=novo')
     lista = estudio_dao.listar_estudio()
     lista_genero = genero_dao.listar_genero()
     
@@ -250,9 +264,9 @@ def novo():
 
 
 @app.route('/novo_filme')
+@login_required
 def novo_filme():
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect('/login?proxima=novo_filme')
+   
     lista = estudio_dao.listar_estudio()
     lista_genero = genero_dao.listar_genero()
     
@@ -266,29 +280,23 @@ def nova_conta():
 
 
 @app.route('/novo_estudio')
+@login_required
 def novo_estudio():
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        
-        return redirect('/login?proxima=novo_estudio')
     
     return render_template('criar_estudio.html')
 
 
 @app.route('/novo_genero')
+@login_required
 def novo_genero():
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        
-        return redirect('/login?proxima=novo_genero')
     
     return render_template('criar_genero.html')
 
 
 # Editar
 @app.route('/editar/<int:id>')
+@login_required
 def editar(id):
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        
-        return redirect('/login?proxima=editar')
     
     if 'usuario_logado' in session:
         usuario = usuario_dao.busca_por_id(session['usuario_logado'])
@@ -301,10 +309,8 @@ def editar(id):
 
 
 @app.route('/editar_filme/<int:id>')
+@login_required
 def editar_filme(id):
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        
-        return redirect('/login?proxima=editar_filme')
     
     filme = filme_dao.busca_filme_por_id(id)
     lista = estudio_dao.listar_estudio()
@@ -321,10 +327,8 @@ def serie_perfil():
 
 # Deletar
 @app.route('/deletar/<int:id>')
+@login_required
 def deletar(id):
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        
-        return redirect('/login?proxima=index')
     
     lista_serie_dao.desfavorita_serie_all(id)
     serie_dao.deletar(id)
@@ -335,10 +339,8 @@ def deletar(id):
 
 
 @app.route('/deletar_filme/<int:id>')
+@login_required
 def deletar_filme(id):
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-       
-        return redirect('/login?proxima=index')
     
     lista_filme_dao.desfavorita_filme_all(id)
     filme_dao.deletar_filme(id)
