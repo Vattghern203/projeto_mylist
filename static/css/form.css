@@ -1,0 +1,148 @@
+*::selection {
+    background-color: #00A2ED;
+}
+
+main {
+    padding: 15px;
+    width: 500px;
+    height: auto;
+    margin: auto;
+    border-radius: 5px;
+}
+
+a {
+    cursor: pointer;
+}
+
+form {
+    margin-top: 100px;
+}
+
+.form_create {
+    color: whitesmoke;
+    font-display: inherit;
+    background-color: #2A2A2A;
+    margin: auto;
+    border-radius: 5px;
+    padding: 10px;
+    width: 400px;
+}
+
+.form_create:hover {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.form_label {
+    margin: auto;
+}
+
+.form_options {
+    padding: 10px;
+    margin: auto;
+    border-radius: 5px;
+    width: 400px;
+    text-decoration: none;
+    background-color: #222222;
+    color: whitesmoke;
+}
+
+.form_select {
+    width: 420px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    background-color: #2A2A2A;
+    color: whitesmoke;
+}
+
+.form_select:hover {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.form_sinopse {
+    color: whitesmoke;
+    font-display: inherit;
+    background-color: #2A2A2A;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    margin: auto;
+    border-radius: 5px;
+    padding: 10px;
+    width: 400px;
+    height: 100px;
+    size-adjust: none;
+    font-family: 'Source Sans Regular', sans-serif;
+}
+
+.form_sinopse:hover {
+    color: black;
+    background-color: whitesmoke;
+}
+
+.form-file {
+    color: whitesmoke;
+    font-display: inherit;
+    background-color: #2A2A2A;
+    margin: auto;
+    border-radius: 5px;
+    padding: 10px;
+    width: 400px;
+    cursor: pointer;
+}
+
+.form.btn {
+    text-align: center;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+.btn_cancel {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.btn_cancel:hover {
+    background-color: rgb(190, 2, 2);
+}
+
+.btn_confirm {
+    background-color: #00A2ED;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.btn_confirm:hover {
+    background-color: #0283be;
+}
+
+select {
+    padding: 7px;
+}

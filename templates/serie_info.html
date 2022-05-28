@@ -3,250 +3,176 @@
 {% block content %}
 
 <style>
-* {
-    box-sizing: border-box;
-}
-
-:root {
-    --logiblue: #00A2ED;
-    --gray-bg: #2A2A2A;
-    --dark-gray-bg: #222222;
-    --darker-gray-bg: #161616;
-    --font-color-default: whitesmoke;
-    --font-family: 'Source Sans Regular', 'Roboto', sans-serif;
-    --thumb-width: 200px;
-    --thumb-height: 283px;
-
-    /* LIGHT MODE */
-    --white-bg: white;
-    --dark-white-bg: rgb(231, 231, 231);
-    --darker-white-bg: rgb(221, 221, 221);
-    --font-color-light: black;
-}
-
-.logo {
-    box-sizing: unset;
-}
-
-.footer {
-    box-sizing: unset;
-}
-
-.social-media {
-    box-sizing: unset;
-}
-
-.content {
-    display: block;
-    background-color:var(--dark-gray-bg);
-    margin: auto;
-    border-radius: 10px;
-    padding: 10px 12px;
-    height: auto;
-}
-
-.tittle {
-    background-color: var(--darker-gray-bg);
-    text-align: left;
-    width: auto;
-    margin-bottom: 10px;
-    height: 50px;
-    border-radius: 5px;
-}
-
-.title-serie {
-    text-align: left;
-    padding: 10px 12px;
-}
-
-.cover {
-    display: inline-block;
-    background-color: var(--darker-gray-bg);
-    width: var(--thumb-width);
-    height: var(--thumb-height);
-    border-radius: 5px;
-    margin-top: 10px;
-    margin: 8px;
-    overflow: hidden;
-}
-
-.sinopse {
-    text-align: left;
-    display: inline-block;
-    height: 283px;
-    width: 80%;
-    border-radius: 5px;
-    margin: 8px;
-    overflow: hidden;
-    padding: 10px 12px;
-    text-size-adjust: inherit;
-}
-
-.cover {
-    display: inline-block;
-    background-color: var(--darker-gray-bg);
-    object-position: cover;
-    width: var(--thumb-width);
-    height: var(--thumb-height);
-    border-radius: 5px;
-    margin-top: 10px;
-    margin: 8px;
-    overflow: hidden;
-}
-
-.cover > img {
-    width: var(--thumb-width);
-    height: var(--thumb-height);
-
-}
-
-.content-info {
-    background-color: var(--darker-gray-bg);
-    text-align: left;
-    margin: auto;
-    border-radius: 5px;
-    display: flex;
-}
-
-.status {
-    margin-left: 15px;
-    text-align: center;
-    display: inline-block;
-    padding: 10px 12px;
-}
-
-.status-content {
-    border-radius: 5px;
-    padding: 5px 6px;
-    display: inline-table;
-    text-align: left;
-    margin: auto;
-}
-
-.status-content-studio {
-    margin: auto;
-    width: 200px;
-    text-align: center;
-}
-
-.user-data {
-    display: inline-flex;
-    margin: auto;
-    margin-top: 25px;
-    padding: 10px 12px;
-    border-radius: 5px;
-    background-color: var(--darker-gray-bg);
-    width: 80%;
-    height: 10%;
-}
-
-.user-data-btn {
-    width: 125px;
-    height: 25px;
-    margin: auto;
-    padding: 10px 12px;
-    border-radius: 3px;
-}
-
-.comment {
-    margin: auto;
-    padding: 10px 12px;
-    border-radius: 5px;
-}
-
-.comentario {
-    margin: 25px;
-    border-radius: 5px;
-    width: 80%;
-    height: 40%;
-    padding: 20px 24px;
-
-}
-
-@media screen and (max-width: 601px){
-    .tittle {
-        text-align: left;
+    * {
+        box-sizing: border-box;
     }
 
-    .sinopse {
-        text-align: left;
-    }
-}
+    :root {
+        --logiblue: #00A2ED;
+        --gray-bg: #2A2A2A;
+        --dark-gray-bg: #222222;
+        --darker-gray-bg: #161616;
+        --font-color-default: whitesmoke;
+        --font-family: 'Source Sans Regular', 'Roboto', sans-serif;
+        --thumb-width: 200px;
+        --thumb-height: 283px;
 
-@media screen and (min-width: 600px){
-    .tittle {
-        text-align: center;
+        /* LIGHT MODE */
+        --white-bg: white;
+        --dark-white-bg: rgb(231, 231, 231);
+        --darker-white-bg: rgb(221, 221, 221);
+        --font-color-light: black;
     }
 
-    .title-serie {
-        text-align: center;
+    .logo, .footer, .social-media {
+        box-sizing: unset;
     }
 
-    .sinopse {
-        text-align: center;
-        height: 200px;
-        overflow: -moz-hidden-unscrollable;
+    main {
+        background-color:var(--dark-gray-bg);
     }
-}
+
+    main, .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+
+    .container-inner-title {
+        background-color: var(--darker-gray-bg);
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .container-inner-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .serie-sinopse {
+        display: flex;
+        flex-wrap: nowrap;
+        word-wrap: break-word;
+        align-self: center;
+        justify-content: center;
+        flex-shrink: inherit;
+        text-justify: auto;
+    }
+
+    .container-inner-bottom {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-shrink: inherit;
+    }
+
+    .user-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-container-top {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        gap: 16px;
+        flex-wrap: nowrap
+    }
+
+    .user-top-1, .user-top-2, .user-top-3 {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .user-comment {
+        padding: 10px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
 
 </style>
 
 <main>
-    <div class="content">
-        <div class="tittle">
-            <h2 class="title-serie">{{serie._nome}}</h2>
+    <div class="container">
+
+        <div class="container-inner-tittle">
+            <h2> {{ serie._nome }}</h2>
         </div>
-        <div class="cover">
-            <img class="cover-form thumbnail" src="{{url_for('imagem', nome_arquivo=capa_serie)}}" alt="">
+
+        <div class="container-inner-center">
+            <img class="cover-form thumbnail" src="{{url_for('imagem', nome_arquivo=capa_serie)}}" alt="Anime Cover">
+
+            <p class="serie-sinopse">{{ serie._sinopse }}</p>
         </div>
-        <div class="sinopse">
-            <section>
-                <p>{{serie._sinopse}}</p>
-            </section>
+
+        <div class="container-inner-bottom">
+            <h4 class="anime-info">Nota: {{ serie._nota }}</h4>
+            <h4 class="anime-info">Episódios: {{ serie._eps }}</h4>
+            <h4 class="anime-info">Temporadas: {{ serie._temps }}</h4>
+            <h4 class="anime-info">Gênero: {{ serie._genero }}</h4>
+            <h4 class="anime-info">Estúdio: {{ serie._estudio }}</h4>
         </div>
-        <div class="content-info">
-            <div class="status">
-                <h4 class="status-content">Nota: {{serie._nota}}</h4>
-                <h4 class="status-content">Episódios: {{serie._eps}}</h4>
-                <h4 class="status-content">Temporadas: {{serie._temps}}</h4>
-                <h4 class="status-content">Gênero: {{serie._genero}}</h4>
-                <h4 class="status-content">Estúdio: {{ serie._estudio }}</h4>
-                <br>
+
+        {% if usuario: %}
+
+        <div class="user-container">
+            <div class="user-container-top">
+                <div class="user-top-1">
+                    <label for="user-temps">Temporada:</label>
+                    <input id="user-temps" class="user-data-btn" type="number">
+                </div>
+                <div class="user-top-2">
+                    <label for="user-eps">Episódios:</label>
+                    <input id="user-eps" class="user-data-btn" type="number">
+                </div>
+                <div class="user-top-3">
+                    <select class="user-data-btn" name="" id="">
+                        <option value=""></option>
+                    </select>
+                </div>
             </div>
-        </div>
 
-    {% if usuario: %}
+            <div class="user-comment">
+                <textarea name="" id="" cols="30" rows="10" placeholder="Write a comment"></textarea>
+            </div>
 
-        <div class="user-data">
-            <label for="user-temps">Temporada:</label>
-            <input id="user-temps" class="user-data-btn" type="number">
-            <label for="user-eps">Episódios:</label>
-            <input id="user-eps" class="user-data-btn" type="number">
-            <select class="user-data-btn" name="" id="">
-                <option value=""></option>
-            </select>
-        </div>
+            {% if favorito:  %}
 
-        <div class="comment">
-            <textarea class="comentario" name="comentario" id="comentario" cols="60" rows="20" placeholder="Write a comment here...">{{usuario._id}}</textarea>
-        </div>
+            <a class="btn_remove_fav" href="{{ url_for('desfavorita_serie', usuario_id=usuario._id, serie_id=serie._id) }}"><img src="{{url_for('static', filename='fulfill-heart.png')}}" alt=""></a>
 
-        {% if favorito: %}
+            {% else: %}
 
-        <a class="btn_remove_fav" href="{{ url_for('desfavorita_serie', usuario_id=usuario._id, serie_id=serie._id) }}"><img src="{{url_for('static', filename='fulfill-heart.png')}}" alt=""></a>
+            <form action="{{url_for('add_serie')}}" method="post">
+                <input type="hidden" name="usuario_id" id="usuario_id" value={{usuario._id}}>
+                <input type="hidden" name="serie_id" id="serie_id" value={{serie._id}}>
+                <a href="{{ url_for('serie_info', id=serie._id )}}"><button class="btn_add_fav" type="submit"><img class="add_fav_img" src="{{url_for('static', filename='empty-heart.png')}}" alt=""></button></a>
+            </form>
 
-        {% else %}
-
-        <form action="{{url_for('add_serie')}}" method="post">
-            <input type="hidden" name="usuario_id" id="usuario_id" value={{usuario._id}}>
-            <input type="hidden" name="serie_id" id="serie_id" value={{serie._id}}>
-            <a href="{{ url_for('serie_info', id=serie._id )}}"><button class="btn_add_fav" type="submit"><img class="add_fav_img" src="{{url_for('static', filename='empty-heart.png')}}" alt=""></button></a>
-        </form>
-
+            {% endif %}
+        
         {% endif %}
 
-    {% endif %}
+        </div>
+
     </div>
+
 </main>
 
 {% endblock %}

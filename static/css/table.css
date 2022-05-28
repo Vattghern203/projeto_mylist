@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+table {
+    margin: auto;
+    padding: 10px 12px;
+}
+
+#works {
+    border-collapse: collapse;
+    margin: auto;
+    border-radius: 5px;
+    width: 90%;
+}
+
+#works td, #works th {
+    border: 1px solid #4b4b4b;
+    padding: 8px;
+}
+
+#works tr:nth-child(even){background-color: #161616;}
+
+#works tr:hover {background-color: rgb(87, 87, 87);}
+
+#works th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #00A2ED;
+    color: whitesmoke;
+}
+    
+.btn_edit {
+background-color: #00A2ED;
+border: none;
+border-radius: 5px;
+color: whitesmoke;
+padding: 12px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 12px;
+margin: 4px 2px;
+cursor: pointer;
+-webkit-transition-duration: 0.4s;
+transition-duration: 0.4s;
+}
+
+.btn_edit:hover { 
+background-color: #0283be;
+}
+
+.btn_edit:active {
+    color: whitesmoke;
+}
+
+.btn_edit:visited {
+    color: whitesmoke;
+}
+
+.btn_delete {
+background-color: red;
+border: none;
+border-radius: 5px;
+color: whitesmoke;
+padding: 12px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 12px;
+margin: 4px 2px;
+cursor: pointer;
+-webkit-transition-duration: 0.4s;
+transition-duration: 0.4s;
+}
+
+.btn_delete:hover {
+    background-color: rgb(190, 2, 2);
+}
+
+.btn_delete:active {
+    color: whitesmoke;
+}
+
+.btn_delete:visited {
+    color: whitesmoke;
+}
+
+a {
+    text-decoration: none;
+    color: #00A2ED;
+}
+
+a:hover {
+    color: whitesmoke;
+}
+
+a:active {
+    color: whitesmoke;
+}
