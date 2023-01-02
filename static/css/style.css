@@ -1,3 +1,12 @@
+/* Cores Paleta
+Azul Logitech: #00A2ED;
+Cinza Background: #2A2A2A;
+Dark Grey BG: #222222
+Darker Grey: #161616
+Fonte: White Smoke;
+
+Extra Color Gray: #1A1C1D;
+*/
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
 *,
 *::before,
@@ -14,7 +23,8 @@ html {
 
 body {
   box-sizing: border-box;
-  margin: 5rem;
+  padding: 3rem;
+  background-color: #00A2ED;
 }
 
 body {
@@ -27,16 +37,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  background-color: #161616;
+  border-radius: 2.5rem 2.5rem 0 0;
+}
+.header__logo {
+  flex: 0 0 30%;
 }
 .header__logo--img {
-  width: 35rem;
+  width: 25rem;
 }
-
-.navigation__list {
+.header .header__navigation {
+  display: flex;
+  flex: 1;
+}
+.header .header__navigation--list {
   list-style: none;
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 

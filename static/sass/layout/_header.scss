@@ -3,12 +3,28 @@
     align-items: center;
     justify-content: space-between;
 
-    width: 100%;
+    background-color: $color-gray-dark-3;
+    border-radius: 2.5rem 2.5rem 0 0;
 
     &__logo {
 
+        flex: 0 0 30%;
+
         &--img {
-            width: 35rem;
+            width: 25rem;
         }
     }
+
+    .header__navigation {
+
+        display: flex;
+        flex: 1;
+
+        &--list {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
 }
